@@ -1,12 +1,6 @@
 import React from 'react';
-
-type searchProps = {
-  submitValue: string;
-};
-
-type searchState = {
-  value: string;
-};
+import { searchProps, searchState } from 'types/types';
+import './search.scss';
 
 class Search extends React.Component<searchProps, searchState> {
   constructor(props: searchProps) {
@@ -17,10 +11,17 @@ class Search extends React.Component<searchProps, searchState> {
 
   render() {
     const { value } = this.state;
+    const { submitValue } = this.props;
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <input type="text" name="name" value={value} onChange={this.handleChange.bind(this)} />
-        <input type="submit" value={this.props.submitValue} />
+      <form className="search__form" onSubmit={this.handleSubmit.bind(this)}>
+        <input
+          className="search__field"
+          type="text"
+          name="name"
+          value={value}
+          onChange={this.handleChange.bind(this)}
+        />
+        <input className="search__button" type="submit" value={submitValue} />
       </form>
     );
   }

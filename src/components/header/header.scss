@@ -10,19 +10,19 @@
   font-size: larger;
 }
 
-.header-wrapper {
+.header__wrapper {
   display: flex;
   width: 100%;
 }
 
-.header-title {
+.header__title {
     flex: 0 0 55%;
     text-transform: uppercase;
     text-align: start;
     font-size: xx-large;
 }
 
-.header-navigation {
+.header__navigation {
   flex: 0 0 45%;
   display: flex;
   justify-content: end;
@@ -31,14 +31,14 @@
   font-size: x-large;
 }
 
-.header-link {
+.header__link {
   color: white;
   text-decoration: none;
   position: relative;
   display: inline-block;
 }
 
-.header-link::after {
+.header__link::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -51,12 +51,12 @@
   transition: transform 0.35s ease-out;
 }
 
-.header-link:hover::after {
+.header__link:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-.header-link__active {
+.header__link_active {
   color: red;
 
   &:hover {
@@ -64,7 +64,7 @@
   }
 }
 
-.header-link__active:hover::after {
+.header__link_active:hover::after {
   transform: scaleX(0);
   transform-origin: bottom right;
 }

@@ -2,7 +2,7 @@ import { Search } from 'components/search/Search';
 
 const HomePage = () => {
   return (
-    <main>
+    <main className="wrapper">
       <Search submitValue="Search"></Search>
     </main>
   );

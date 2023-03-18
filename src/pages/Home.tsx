@@ -1,8 +1,10 @@
+import { Search } from 'components/search/Search';
+
 const HomePage = () => {
   return (
-    <>
-      <div>Main</div>
-    </>
+    <main>
+      <Search submitValue="Search"></Search>
+    </main>
   );
 };
 

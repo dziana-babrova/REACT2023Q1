@@ -1,7 +1,9 @@
+import './about.scss';
+
 const AboutPage = () => {
   return (
     <main className="wrapper">
-      <div>No data provided</div>
+      <div className="about-message">No data provided</div>
     </main>
   );
 };

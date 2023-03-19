@@ -1,9 +1,9 @@
 import React from 'react';
-import { searchProps, searchState } from 'types/types';
+import { SearchProps, SearchState } from 'types/types';
 import './search.scss';
 
-class Search extends React.Component<searchProps, searchState> {
-  constructor(props: searchProps) {
+class Search extends React.Component<SearchProps, SearchState> {
+  constructor(props: SearchProps) {
     super(props);
     this.state = { value: this.getSearchValueFromLS() };
     window.addEventListener('beforeunload', this.setSearchVAlueToLS.bind(this));

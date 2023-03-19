@@ -1,10 +1,7 @@
+import { Navigation } from 'components/navigation/Navigation';
 import { withRouter } from 'components/withRouter';
-import { NavLink } from 'react-router-dom';
-import { setActiveFunction, headerProps } from 'types/types';
+import { HeaderProps } from 'types/types';
 import './header.scss';
-
-const setActive: setActiveFunction = ({ isActive }) =>
-  isActive ? 'header__link header__link_active' : 'header__link';
 
 const setTitle = (path: string) => {
   switch (path) {
@@ -20,19 +17,12 @@ const setTitle = (path: string) => {
   }
 };
 
-const Header = (props: headerProps) => {
+const Header = (props: HeaderProps) => {
   return (
     <header className="header">
       <div className="header__wrapper wrapper">
         <div className="header__title">{setTitle(props.location.pathname)}</div>
-        <div className="header__navigation">
-          <NavLink to="/" className={setActive}>
-            Home
-          </NavLink>
-          <NavLink to="/about" className={setActive}>
-            About Us
-          </NavLink>
-        </div>
+        <Navigation></Navigation>
       </div>
     </header>
   );

@@ -20,6 +20,7 @@ export default defineConfig({
     setupFiles: ['src/setupTests.ts'],
     coverage: {
       all: true,
+      enabled: true,
       exclude: ['src/consts', 'src/types', 'src/**/*.test.tsx', 'src/vite-env.d.ts'],
       src: ['src'],
       provider: 'c8',

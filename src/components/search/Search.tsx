@@ -1,5 +1,7 @@
+import { LocalStorageKeys } from 'consts/localStorageKeys';
 import React from 'react';
 import { SearchProps, SearchState } from 'types/types';
+
 import './search.scss';
 
 class Search extends React.Component<SearchProps, SearchState> {
@@ -41,11 +43,11 @@ class Search extends React.Component<SearchProps, SearchState> {
   }
 
   getSearchValueFromLS() {
-    return window.localStorage.getItem('searchValue') || '';
+    return window.localStorage.getItem(LocalStorageKeys.search) || '';
   }
 
   setSearchVAlueToLS() {
-    window.localStorage.setItem('searchValue', this.state.value);
+    window.localStorage.setItem(LocalStorageKeys.search, this.state.value);
   }
 }
 

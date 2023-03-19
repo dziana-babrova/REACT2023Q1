@@ -21,7 +21,7 @@ const Header = (props: HeaderProps) => {
   return (
     <header className="header">
       <div className="header__wrapper wrapper">
-        <div className="header__title">{setTitle(props.location.pathname)}</div>
+        <h1 className="header__title">{setTitle(props.location.pathname)}</h1>
         <Navigation></Navigation>
       </div>
     </header>

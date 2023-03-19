@@ -13,10 +13,10 @@ class Search extends React.Component<SearchProps, SearchState> {
     const { value } = this.state;
     const { submitValue } = this.props;
     return (
-      <form className="search__form" onSubmit={this.handleSubmit.bind(this)}>
+      <form role="search" className="search__form" onSubmit={this.handleSubmit.bind(this)}>
         <input
           className="search__field"
-          type="text"
+          type="search"
           name="name"
           value={value}
           onChange={this.handleChange.bind(this)}

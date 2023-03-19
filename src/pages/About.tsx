@@ -1,8 +1,8 @@
 const AboutPage = () => {
   return (
-    <>
-      <div>About US</div>
-    </>
+    <main className="wrapper">
+      <div>No data provided</div>
+    </main>
   );
 };
 

@@ -1,0 +1,70 @@
+.cards-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.cards-item {
+  border-radius: 10px;
+  background-color: white;
+  flex: 1 1 23%;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Comfortaa', cursive;
+}
+
+.card-image {
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  position: relative;
+  display: inline-block;
+}
+
+.card-title {
+  flex: 0 0 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-name {
+  font-weight: 900;
+  font-size: large;
+}
+
+.card-info {
+  flex: 0 0 100%;
+}
+
+.card-status,
+.card-location {
+  padding: 0 10px;
+  font-weight: 900;
+  box-sizing: border-box;
+}
+
+.card-status_alive {
+  color: green;
+}
+
+.card-status_dead {
+  color: red;
+}
+
+.card-status_unknown {
+  color: blue;
+}
+
+.card-gender {
+  font-size: small;
+  vertical-align: baseline;
+}

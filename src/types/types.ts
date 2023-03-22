@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+
 export type SetActiveFunction = (props: {
   isActive: boolean;
   isPending: boolean;
@@ -35,3 +37,7 @@ export type CardProps = {
   url: string;
   created: string;
 };
+
+export interface WithRouterProps {
+  location: ReturnType<typeof useLocation>;
+}

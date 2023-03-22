@@ -1,6 +1,6 @@
 import { Navigation } from 'components/navigation/Navigation';
 import { withRouter } from 'components/withRouter';
-import { HeaderProps } from 'types/types';
+import { WithRouterProps } from 'types/types';
 import './header.scss';
 
 const setTitle = (path: string) => {
@@ -17,7 +17,7 @@ const setTitle = (path: string) => {
   }
 };
 
-const Header = (props: HeaderProps) => {
+const Header = (props: WithRouterProps) => {
   return (
     <header className="header">
       <div className="header__wrapper wrapper">

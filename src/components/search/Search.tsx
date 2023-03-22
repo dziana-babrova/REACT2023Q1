@@ -28,14 +28,12 @@ class Search extends React.Component<SearchProps, SearchState> {
     );
   }
 
-  handleChange() {
-    if (event && event.target && 'value' in event.target) {
-      this.setState({ value: event.target.value as string });
-    }
+  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ value: event.target.value });
   }
 
-  handleSubmit() {
-    event?.preventDefault();
+  handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
   }
 
   componentWillUnmount() {

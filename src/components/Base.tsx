@@ -4,7 +4,7 @@ import { HeaderWithRouter } from './header/Header';
 const Base = () => {
   return (
     <div>
-      <HeaderWithRouter location={window.location}></HeaderWithRouter>
+      <HeaderWithRouter></HeaderWithRouter>
       <Outlet />
     </div>
   );

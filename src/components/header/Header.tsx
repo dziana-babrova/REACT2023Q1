@@ -11,6 +11,9 @@ const setTitle = (path: string) => {
     case '/about': {
       return 'About us';
     }
+    case '/forms': {
+      return 'Forms';
+    }
     default: {
       return '404';
     }

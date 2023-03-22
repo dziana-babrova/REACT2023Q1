@@ -46,4 +46,11 @@ module.exports = {
       version: 'detect',
     },
   },
+  overrides: [
+    {
+      // Enable eslint-plugin-testing-library rules or preset only for matching testing files
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+  ],
 };

@@ -1,7 +1,9 @@
+import { Form } from 'components/form/Form';
+
 const FormsPage = () => {
   return (
     <main className="wrapper">
-      <div>Forms</div>
+      <Form />
     </main>
   );
 };

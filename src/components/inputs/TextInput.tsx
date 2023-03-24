@@ -4,6 +4,7 @@ type TextInputProps = {
   className: string;
   id: string;
   reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
 };
 
 export class TextInput extends React.Component<TextInputProps> {
@@ -11,7 +12,12 @@ export class TextInput extends React.Component<TextInputProps> {
     return (
       <div className={this.props.className}>
         <label htmlFor={this.props.id}></label>
-        <input type="text" ref={this.props.reference} id={this.props.id} />
+        <input
+          type="text"
+          ref={this.props.reference}
+          id={this.props.id}
+          className={this.props.errorMessage ? 'error' : ''}
+        />
       </div>
     );
   }

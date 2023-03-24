@@ -57,3 +57,7 @@ input[type=file]::file-selector-button {
   @extend %button;
   height: 40px;
 }
+
+.error {
+  border: 2px solid red;
+}

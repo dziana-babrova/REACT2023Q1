@@ -6,6 +6,7 @@ type CheckboxInputProps = {
   id: string;
   label: string;
   reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
 };
 
 export class CheckboxInput extends React.Component<CheckboxInputProps> {
@@ -19,6 +20,7 @@ export class CheckboxInput extends React.Component<CheckboxInputProps> {
           id={this.props.id}
         />
         <label htmlFor={this.props.id}>{this.props.label}</label>
+        {this.props.errorMessage ? <div>Error</div> : <div></div>}
       </div>
     );
   }

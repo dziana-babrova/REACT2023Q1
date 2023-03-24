@@ -6,6 +6,7 @@ type RadioInputProps = {
   label: string;
   name: string;
   reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
 };
 
 export class RadioInput extends React.Component<RadioInputProps> {
@@ -19,6 +20,7 @@ export class RadioInput extends React.Component<RadioInputProps> {
           name={this.props.name}
         />
         <label htmlFor={this.props.label}>{this.props.label}</label>
+        {this.props.errorMessage ? <div>Error</div> : <div></div>}
       </div>
     );
   }

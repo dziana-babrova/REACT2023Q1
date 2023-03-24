@@ -5,13 +5,18 @@ type SelectProps = {
   defaultText: string;
   options: string[];
   reference: React.RefObject<HTMLSelectElement>;
+  errorMessage: string;
 };
 
 export class Select extends React.Component<SelectProps> {
   render() {
     return (
-      <select className={this.props.className} ref={this.props.reference}>
-        <option value={this.props.defaultText} disabled selected>
+      <select
+        className={this.props.className + this.props.errorMessage ? 'error' : ''}
+        ref={this.props.reference}
+        defaultValue={this.props.defaultText}
+      >
+        <option value={this.props.defaultText} disabled>
           {this.props.defaultText}
         </option>
         {this.props.options.map((option) => (

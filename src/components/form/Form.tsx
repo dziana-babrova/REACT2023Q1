@@ -10,7 +10,17 @@ const langs = ['English', 'German', 'French', 'Italian', 'Chinese'];
 const types = ['online', 'offline'];
 const themes = ['character', 'episode', 'season', 'news about show'];
 
-class Form extends React.Component<Record<string, never>> {
+type formState = {
+  name: string;
+  place: string;
+  date: string;
+  theme: string;
+  lang: string;
+  type: string;
+  poster: string;
+};
+
+class Form extends React.Component<Record<string, never>, formState> {
   eventName: React.RefObject<HTMLInputElement>;
   eventPlace: React.RefObject<HTMLInputElement>;
   eventDate: React.RefObject<HTMLInputElement>;
@@ -18,6 +28,7 @@ class Form extends React.Component<Record<string, never>> {
   eventLang: React.RefObject<HTMLSelectElement>;
   eventType: React.RefObject<HTMLInputElement>[];
   eventPoster: React.RefObject<HTMLInputElement>;
+  formRef: React.RefObject<HTMLFormElement>;
 
   constructor(props: Record<string, never>) {
     super(props);
@@ -28,15 +39,26 @@ class Form extends React.Component<Record<string, never>> {
     this.eventLang = React.createRef<HTMLSelectElement>();
     this.eventType = types.map(() => React.createRef<HTMLInputElement>());
     this.eventPoster = React.createRef<HTMLInputElement>();
+    this.formRef = React.createRef<HTMLFormElement>();
+    this.state = { name: '', place: '', date: '', theme: '', lang: '', type: '', poster: '' };
   }
 
   render() {
     return (
-      <form className="event-form" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="event-form" onSubmit={this.handleSubmit.bind(this)} ref={this.formRef}>
         <p className="event-form__label">Give your event a name:</p>
-        <TextInput id="name" className="event-form__input input-name" reference={this.eventName} />
+        <TextInput
+          id="name"
+          className="event-form__input input-name"
+          reference={this.eventName}
+          errorMessage={this.state.name}
+        />
         <p className="event-form__label">Provide the held date:</p>
-        <DateInput className="event-form__input input__date" reference={this.eventDate} />
+        <DateInput
+          className="event-form__input input__date"
+          reference={this.eventDate}
+          errorMessage={this.state.date}
+        />
         <p className="event-form__label">What are you planning to discuss?</p>
         {themes.map((theme, index) => (
           <CheckboxInput
@@ -45,6 +67,7 @@ class Form extends React.Component<Record<string, never>> {
             label={theme}
             id={theme}
             reference={this.eventTheme[index]}
+            errorMessage={index === themes.length ? this.state.theme : ''}
           />
         ))}
         <p className="event-form__label">Which language will your group speak?</p>
@@ -53,6 +76,7 @@ class Form extends React.Component<Record<string, never>> {
           defaultText="Language"
           options={langs}
           reference={this.eventLang}
+          errorMessage={this.state.lang}
         />
         <p className="event-form__label">Type of event:</p>
         {types.map((type, index) => (
@@ -62,6 +86,7 @@ class Form extends React.Component<Record<string, never>> {
             label={type}
             name="place"
             reference={this.eventType[index]}
+            errorMessage={index === types.length ? this.state.type : ''}
           />
         ))}
         <p className="event-form__label">Link or Address where your event will take place:</p>
@@ -69,9 +94,14 @@ class Form extends React.Component<Record<string, never>> {
           id="place"
           className="event-form__input input-place"
           reference={this.eventPlace}
+          errorMessage={this.state.place}
         />
         <p className="event-form__label">Upload a poster for your event:</p>
-        <FileInput className="event-form__input input-file" reference={this.eventPoster} />
+        <FileInput
+          className="event-form__input input-file"
+          reference={this.eventPoster}
+          errorMessage={this.state.poster}
+        />
         <input className="input-submit" type="submit" />
       </form>
     );
@@ -79,6 +109,17 @@ class Form extends React.Component<Record<string, never>> {
 
   handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    this.validate();
+    // this.formRef.current?.reset();
+  }
+
+  validate() {
+    this.setState({ name: this.validateName(this.eventName.current?.value) });
+  }
+
+  validateName(name: string | undefined) {
+    if (name === '') return 'Event Name cannot be empty';
+    return '';
   }
 }
 

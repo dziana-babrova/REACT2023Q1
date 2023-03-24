@@ -14,8 +14,13 @@ export class FileInput extends React.Component<FileInputProps> {
 
   render() {
     return (
-      <div>
-        <input className={this.props.className} type="file" ref={this.fileInput} />
+      <div className={this.props.className}>
+        <input
+          className=""
+          type="file"
+          accept="image/png, image/jpg, image/gif, image/jpeg"
+          ref={this.fileInput}
+        />
       </div>
     );
   }

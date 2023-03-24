@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 50px 0;
+  padding: 0 0 50px;
 }
 
 .search__field {
@@ -20,16 +20,5 @@
 }
 
 .search__button {
-  width: 140px;
-  font-family: 'Comfortaa', cursive;
-  text-transform: uppercase;
-  background-color: #ff0000;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    background-color: #e90101df;
-  }
+  @extend %button;
 }

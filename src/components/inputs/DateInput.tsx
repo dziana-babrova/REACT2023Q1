@@ -14,8 +14,8 @@ export class DateInput extends React.Component<DateInputProps> {
 
   render() {
     return (
-      <div>
-        <input className={this.props.className} type="date" ref={this.dateInput} />
+      <div className={this.props.className}>
+        <input type="date" ref={this.dateInput} />
       </div>
     );
   }

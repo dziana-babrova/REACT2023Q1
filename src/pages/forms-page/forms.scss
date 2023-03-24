@@ -1,0 +1,59 @@
+.section-title {
+  font-family: 'Comfortaa', cursive;
+  text-transform: capitalize;
+  font-weight: 900;
+  font-size: xx-large;
+  text-align: center;
+}
+
+.event-form {
+  font-family: 'Comfortaa', cursive;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  background-color: #000000c8;
+  color: rgba(255, 255, 255, 0.802);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: large;
+
+  input[type="text"],
+  input[type="date"],
+  select {
+    width: 50%;
+    outline: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+    height: 30px;
+  }
+}
+
+.event-form__label,
+.event-form__input {
+  flex: 0 0 100%;
+}
+
+.select {
+  flex: 0 0 50%;
+}
+
+.event-form__label {
+  font-weight: 600;
+}
+
+.input-checkbox,
+.input-radio {
+  padding-bottom: 5px;
+}
+
+.input-submit {
+  @extend %button;
+  height: 40px;
+  margin: 20px 0;
+}
+
+input[type=file]::file-selector-button {
+  @extend %button;
+  height: 40px;
+}

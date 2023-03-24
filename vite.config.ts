@@ -27,4 +27,11 @@ export default defineConfig({
       reporter: ['text'],
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "src/consts/vars.scss";',
+      },
+    },
+  },
 });

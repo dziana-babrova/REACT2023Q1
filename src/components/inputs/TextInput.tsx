@@ -15,14 +15,9 @@ export class TextInput extends React.Component<TextInputProps> {
 
   render() {
     return (
-      <div>
+      <div className={this.props.className}>
         <label htmlFor={this.props.id}></label>
-        <input
-          className={this.props.className}
-          type="text"
-          ref={this.textInput}
-          id={this.props.id}
-        />
+        <input type="text" ref={this.textInput} id={this.props.id} />
       </div>
     );
   }

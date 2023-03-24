@@ -1,4 +1,5 @@
 import React from 'react';
+import './checkbox.scss';
 
 type CheckboxInputProps = {
   className: string;
@@ -16,7 +17,7 @@ export class CheckboxInput extends React.Component<CheckboxInputProps> {
 
   render() {
     return (
-      <div>
+      <div className={this.props.className}>
         <input
           className={this.props.className}
           type="checkbox"

@@ -4,19 +4,13 @@ type SelectProps = {
   className: string;
   defaultText: string;
   options: string[];
+  reference: React.RefObject<HTMLSelectElement>;
 };
 
 export class Select extends React.Component<SelectProps> {
-  select: React.RefObject<HTMLInputElement>;
-
-  constructor(props: SelectProps) {
-    super(props);
-    this.select = React.createRef();
-  }
-
   render() {
     return (
-      <select className={this.props.className}>
+      <select className={this.props.className} ref={this.props.reference}>
         <option value={this.props.defaultText} disabled selected>
           {this.props.defaultText}
         </option>

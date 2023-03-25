@@ -109,6 +109,7 @@ class Form extends React.Component<Record<string, never>, formState> {
 
   handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    console.log(this.eventDate.current?.value);
     this.validate();
     // this.formRef.current?.reset();
   }

@@ -1,10 +1,5 @@
 import React from 'react';
-
-type FileInputProps = {
-  className: string;
-  reference: React.RefObject<HTMLInputElement>;
-  errorMessage: string;
-};
+import { FileInputProps } from 'types/types';
 
 export class FileInput extends React.Component<FileInputProps> {
   render() {

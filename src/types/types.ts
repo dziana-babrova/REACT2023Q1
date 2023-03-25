@@ -41,3 +41,46 @@ export type CardProps = {
 export interface WithRouterProps {
   location: ReturnType<typeof useLocation>;
 }
+
+export type CheckboxInputProps = {
+  className: string;
+  id: string;
+  label: string;
+  reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
+};
+
+export type DateInputProps = {
+  className: string;
+  reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
+};
+
+export type FileInputProps = {
+  className: string;
+  reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
+};
+
+export type RadioInputProps = {
+  className: string;
+  label: string;
+  name: string;
+  reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
+};
+
+export type SelectProps = {
+  className: string;
+  defaultText: string;
+  options: string[];
+  reference: React.RefObject<HTMLSelectElement>;
+  errorMessage: string;
+};
+
+export type TextInputProps = {
+  className: string;
+  id: string;
+  reference: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
+};

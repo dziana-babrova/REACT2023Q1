@@ -1,10 +1,5 @@
 import React from 'react';
-
-type DateInputProps = {
-  className: string;
-  reference: React.RefObject<HTMLInputElement>;
-  errorMessage: string;
-};
+import { DateInputProps } from 'types/types';
 
 export class DateInput extends React.Component<DateInputProps> {
   render() {

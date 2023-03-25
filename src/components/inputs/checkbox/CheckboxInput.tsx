@@ -1,13 +1,6 @@
 import React from 'react';
+import { CheckboxInputProps } from 'types/types';
 import './checkbox.scss';
-
-type CheckboxInputProps = {
-  className: string;
-  id: string;
-  label: string;
-  reference: React.RefObject<HTMLInputElement>;
-  errorMessage: string;
-};
 
 export class CheckboxInput extends React.Component<CheckboxInputProps> {
   render() {

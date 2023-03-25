@@ -1,12 +1,5 @@
 import React from 'react';
-
-type SelectProps = {
-  className: string;
-  defaultText: string;
-  options: string[];
-  reference: React.RefObject<HTMLSelectElement>;
-  errorMessage: string;
-};
+import { SelectProps } from 'types/types';
 
 export class Select extends React.Component<SelectProps> {
   render() {

@@ -1,11 +1,5 @@
 import React from 'react';
-
-type TextInputProps = {
-  className: string;
-  id: string;
-  reference: React.RefObject<HTMLInputElement>;
-  errorMessage: string;
-};
+import { TextInputProps } from 'types/types';
 
 export class TextInput extends React.Component<TextInputProps> {
   render() {

@@ -1,10 +1,10 @@
-import { TextInput } from 'components/inputs/TextInput';
-import { DateInput } from 'components/inputs/DateInput';
-import { FileInput } from 'components/inputs/FileInput';
+import { TextInput } from 'components/inputs/text/TextInput';
+import { DateInput } from 'components/inputs/date/DateInput';
+import { FileInput } from 'components/inputs/file/FileInput';
 import { CheckboxInput } from 'components/inputs/checkbox/CheckboxInput';
-import { RadioInput } from 'components/inputs/RadioInput';
+import { RadioInput } from 'components/inputs/radio/RadioInput';
 import React from 'react';
-import { Select } from 'components/inputs/Select';
+import { Select } from 'components/inputs/select/Select';
 import {
   validateDate,
   validateLang,

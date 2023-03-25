@@ -20,7 +20,11 @@ export class CheckboxInput extends React.Component<CheckboxInputProps> {
           id={this.props.id}
         />
         <label htmlFor={this.props.id}>{this.props.label}</label>
-        {this.props.errorMessage ? <div>Error</div> : <div></div>}
+        {this.props.errorMessage ? (
+          <div className="error-message">{this.props.errorMessage}</div>
+        ) : (
+          <div></div>
+        )}
       </div>
     );
   }

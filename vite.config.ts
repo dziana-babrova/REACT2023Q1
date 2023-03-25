@@ -12,6 +12,7 @@ export default defineConfig({
       types: '/src/types',
       data: '/src/data',
       consts: '/src/consts',
+      services: '/src/services',
     },
   },
   test: {

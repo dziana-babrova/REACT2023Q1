@@ -23,8 +23,9 @@ export function validateTheme(eventTheme: React.RefObject<HTMLInputElement>[]) {
   return error;
 }
 
-export function validateLang(eventLang: React.RefObject<HTMLSelectElement>, defaultText: string) {
-  if (eventLang.current?.value === defaultText) {
+export function validateLang(eventLang: React.RefObject<HTMLSelectElement>, options: string[]) {
+  if (!eventLang.current) return 'Invalid format';
+  if (!options.includes(eventLang.current.value)) {
     return 'Language should be selected';
   }
   return '';

@@ -15,7 +15,7 @@ export class DateInput extends React.Component<DateInputProps> {
           ref={this.props.reference}
           className={this.props.errorMessage ? 'error' : ''}
         />
-        {this.props.errorMessage ? <div>Error</div> : <div></div>}
+        <div className="error-message">{this.props.errorMessage}</div>
       </div>
     );
   }

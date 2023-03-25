@@ -18,6 +18,7 @@ export class TextInput extends React.Component<TextInputProps> {
           id={this.props.id}
           className={this.props.errorMessage ? 'error' : ''}
         />
+        <div className="error-message">{this.props.errorMessage}</div>
       </div>
     );
   }

@@ -20,7 +20,11 @@ export class RadioInput extends React.Component<RadioInputProps> {
           name={this.props.name}
         />
         <label htmlFor={this.props.label}>{this.props.label}</label>
-        {this.props.errorMessage ? <div>Error</div> : <div></div>}
+        {this.props.errorMessage ? (
+          <div className="error-message">{this.props.errorMessage}</div>
+        ) : (
+          <div></div>
+        )}
       </div>
     );
   }

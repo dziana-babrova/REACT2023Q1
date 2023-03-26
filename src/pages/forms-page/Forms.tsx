@@ -7,7 +7,9 @@ import './forms.scss';
 class FormsPage extends React.Component<Record<string, never>, FormsPageState> {
   constructor(props: Record<string, never>) {
     super(props);
-    this.state = { cards: [] };
+    this.state = {
+      cards: [],
+    };
     this.updateCards = this.updateCards.bind(this);
   }
 

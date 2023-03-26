@@ -9,11 +9,11 @@ class EventCards extends React.Component<FormsPageState> {
 
   render() {
     return (
-      <div className="events">
+      <ul className="events">
         {this.props.cards.map((card) => (
           <EventCard key={card.name} {...card} />
         ))}
-      </div>
+      </ul>
     );
   }
 }

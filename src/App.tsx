@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import { Base } from 'components/Base';
-import { AboutPage } from 'pages/About';
-import { HomePage } from 'pages/Home';
-import { NotFoundPage } from 'pages/NotFound';
+import { AboutPage } from 'pages/about-page/About';
+import { HomePage } from 'pages/home-page/Home';
+import { NotFoundPage } from 'pages/not-found-page/NotFound';
+import { FormsPage } from 'pages/forms-page/Forms';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Base></Base>}>
           <Route index path="/" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
+          <Route path="forms" element={<FormsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

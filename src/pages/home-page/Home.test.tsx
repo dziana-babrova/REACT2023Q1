@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 
-import { HomePage } from 'pages/Home';
+import { HomePage } from 'pages/home-page/Home';
 
 describe('Home page', () => {
   afterEach(() => {

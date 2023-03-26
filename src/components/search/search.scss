@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 50px 0;
+  padding: 0 0 50px;
 }
 
 .search__field {
@@ -11,7 +11,7 @@
   height: 40px;
   outline: none;
   background-color: rgb(232, 240, 254), rgba(70, 90, 126, 0.4);
-  font-family: 'Comfortaa', cursive;
+  font-family: $font-primary;
   font-size: larger;
   padding: 0 15px;
   box-sizing: border-box;
@@ -20,16 +20,5 @@
 }
 
 .search__button {
-  width: 140px;
-  font-family: 'Comfortaa', cursive;
-  text-transform: uppercase;
-  background-color: #ff0000;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    background-color: #e90101df;
-  }
+  @extend %button;
 }

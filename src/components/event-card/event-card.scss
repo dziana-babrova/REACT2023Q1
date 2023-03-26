@@ -1,4 +1,4 @@
-.cards-list {
+.events {
   list-style: none;
   padding: 0;
   display: flex;
@@ -8,16 +8,16 @@
   width: 100%;
 }
 
-.cards-item {
+.events-item {
   border-radius: 10px;
   background-color: white;
-  flex: 1 1 23%;
+  flex: 0 0 32%;
   display: flex;
   flex-wrap: wrap;
   font-family: $font-primary;
 }
 
-.card-image {
+.event__image {
   width: 100%;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -27,7 +27,7 @@
   display: inline-block;
 }
 
-.card-title {
+.event__title {
   flex: 0 0 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -36,35 +36,28 @@
   justify-content: space-between;
 }
 
-.card-name {
+.event__name {
   font-weight: 900;
   font-size: large;
+  text-transform: uppercase;
 }
 
-.card-info {
+.event__place,
+.event__time,
+.event__lang,
+.event__theme {
   flex: 0 0 100%;
-}
-
-.card-status,
-.card-location {
   padding: 0 10px;
   font-weight: 900;
   box-sizing: border-box;
+  color: grey;
 }
 
-.card-status_alive {
-  color: green;
-}
-
-.card-status_dead {
-  color: red;
-}
-
-.card-status_unknown {
-  color: blue;
-}
-
-.card-gender {
-  font-size: small;
-  vertical-align: baseline;
+.event__address,
+.event__type,
+.event__date,
+.event__lang-item,
+.event__theme-item {
+  color: black;
+  font-weight: 400;
 }

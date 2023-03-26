@@ -34,7 +34,20 @@ describe('App', () => {
     ).toHaveTextContent('About us');
   });
 
-  it('displayed 404 page name in the header if rendered path is invalid', () => {
+  it('displays Forms page name in the header', () => {
+    render(
+      <MemoryRouter initialEntries={['/forms']}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+      })
+    ).toHaveTextContent('Forms');
+  });
+
+  it('displays 404 page name in the header if rendered path is invalid', () => {
     render(
       <MemoryRouter initialEntries={['/non-existing-route']}>
         <App />

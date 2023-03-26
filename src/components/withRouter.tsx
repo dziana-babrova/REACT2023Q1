@@ -1,12 +1,13 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { WithRouterProps } from 'types/types';
 
-function withRouter<ComponentProps>(Component: React.FunctionComponent<ComponentProps>) {
-  function ComponentWithRouterProp(props: ComponentProps) {
+export const withRouter = <Props extends WithRouterProps>(
+  Component: React.ComponentType<Props>
+) => {
+  return (props: Omit<Props, keyof WithRouterProps>) => {
     const location = useLocation();
-    return <Component {...props} location={location} />;
-  }
-  return ComponentWithRouterProp;
-}
 
-export { withRouter };
+    return <Component {...(props as Props)} location={location} />;
+  };
+};

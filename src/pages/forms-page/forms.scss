@@ -1,0 +1,85 @@
+.forms-content {
+  position: relative;
+}
+
+.section-title {
+  font-family: $font-primary;
+  text-transform: capitalize;
+  font-weight: 900;
+  font-size: xx-large;
+  text-align: center;
+}
+
+.form-background {
+  background-image: url('./../../assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.event-form {
+  font-family: $font-primary;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  background-color: #000000c8;
+  color: rgba(255, 255, 255, 0.802);
+  padding: 20px;
+  font-size: large;
+
+  input[type="text"],
+  input[type="date"],
+  select {
+    width: 50%;
+    outline: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+    height: 30px;
+  }
+
+  select {
+    width: 100%;
+  }
+}
+
+.event-form__label,
+.event-form__input {
+  flex: 0 0 100%;
+}
+
+.select {
+  flex: 0 0 50%;
+}
+
+.event-form__label {
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+.input-checkbox,
+.input-radio {
+  padding-bottom: 5px;
+}
+
+.input-submit {
+  @extend %button;
+  height: 40px;
+  margin: 15px 0;
+}
+
+input[type=file]::file-selector-button {
+  @extend %button;
+  height: 40px;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+.error-message {
+  font-size: small;
+  color: red;
+  padding-top: 2px;
+  min-height: 17px;
+}

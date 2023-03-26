@@ -12,6 +12,7 @@ export default defineConfig({
       types: '/src/types',
       data: '/src/data',
       consts: '/src/consts',
+      services: '/src/services',
     },
   },
   test: {
@@ -25,6 +26,13 @@ export default defineConfig({
       src: ['src'],
       provider: 'c8',
       reporter: ['text'],
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "src/consts/vars.scss";',
+      },
     },
   },
 });

@@ -3,7 +3,7 @@
 }
 
 .section-title {
-  font-family: 'Comfortaa', cursive;
+  font-family: $font-primary;
   text-transform: capitalize;
   font-weight: 900;
   font-size: xx-large;
@@ -18,7 +18,7 @@
 }
 
 .event-form {
-  font-family: 'Comfortaa', cursive;
+  font-family: $font-primary;
   max-width: 500px;
   display: flex;
   flex-wrap: wrap;

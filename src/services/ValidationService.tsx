@@ -8,8 +8,6 @@ export function validateName(eventName: React.RefObject<HTMLInputElement>) {
 export function validateDate(eventDate: React.RefObject<HTMLInputElement>) {
   if (!eventDate.current) return 'Invalid format';
   if (eventDate.current.value === '') return 'Event Date cannot be empty';
-  if (Date.parse(eventDate.current.value) < Date.parse(Date.now().toString()))
-    return 'Event Date cannot be in the past';
   return '';
 }
 

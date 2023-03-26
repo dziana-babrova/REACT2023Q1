@@ -84,3 +84,31 @@ export type TextInputProps = {
   reference: React.RefObject<HTMLInputElement>;
   errorMessage: string;
 };
+
+export type formState = {
+  name: string;
+  place: string;
+  date: string;
+  theme: string;
+  lang: string;
+  type: string;
+  poster: string;
+};
+
+export type Card = {
+  name: string;
+  place: string;
+  date: string;
+  theme: string[];
+  lang: string;
+  type: string;
+  image: string;
+};
+
+export type FormsPageState = {
+  cards: Card[];
+};
+
+export type formProps = {
+  create: (newCard: Card) => void;
+};

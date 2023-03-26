@@ -14,22 +14,13 @@ import {
   validateTheme,
   validateType,
 } from 'services/ValidationService';
+import { formProps, formState } from 'types/types';
 
 const langs = ['English', 'German', 'French', 'Italian', 'Chinese'];
 const types = ['online', 'offline'];
 const themes = ['character', 'episode', 'season', 'news about show'];
 
-type formState = {
-  name: string;
-  place: string;
-  date: string;
-  theme: string;
-  lang: string;
-  type: string;
-  poster: string;
-};
-
-class Form extends React.Component<Record<string, never>, formState> {
+class Form extends React.Component<formProps, formState> {
   eventName: React.RefObject<HTMLInputElement>;
   eventPlace: React.RefObject<HTMLInputElement>;
   eventDate: React.RefObject<HTMLInputElement>;
@@ -39,7 +30,7 @@ class Form extends React.Component<Record<string, never>, formState> {
   eventPoster: React.RefObject<HTMLInputElement>;
   formRef: React.RefObject<HTMLFormElement>;
 
-  constructor(props: Record<string, never>) {
+  constructor(props: formProps) {
     super(props);
     this.eventName = React.createRef<HTMLInputElement>();
     this.eventPlace = React.createRef<HTMLInputElement>();
@@ -122,6 +113,22 @@ class Form extends React.Component<Record<string, never>, formState> {
     e.preventDefault();
     this.validate();
     if (Object.values(this.state).some((state) => state !== '')) return;
+    this.props.create.call(this, {
+      image: URL.createObjectURL(this.eventPoster.current!.files![0]),
+      name: this.eventName.current!.value,
+      place: this.eventPlace.current!.value,
+      date: this.eventDate.current!.value,
+      lang: this.eventLang.current!.value,
+      type: this.eventType[0].current!.checked
+        ? this.eventType[0].current!.value
+        : this.eventType[1].current!.value,
+      theme: this.eventTheme.reduce((themes: string[], theme) => {
+        if (theme.current?.checked) {
+          themes.push(theme.current.value);
+        }
+        return themes;
+      }, []),
+    });
     this.formRef.current?.reset();
   }
 

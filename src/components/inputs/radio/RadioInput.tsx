@@ -11,6 +11,7 @@ export class RadioInput extends React.Component<RadioInputProps> {
           ref={this.props.reference}
           id={this.props.label}
           name={this.props.name}
+          value={this.props.label}
         />
         <label htmlFor={this.props.label}>{this.props.label}</label>
         {this.props.errorMessage ? (

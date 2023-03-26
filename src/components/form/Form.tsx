@@ -110,26 +110,30 @@ class Form extends React.Component<formProps, formState> {
   }
 
   handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    this.validate();
-    if (Object.values(this.state).some((state) => state !== '')) return;
-    this.props.create.call(this, {
-      image: URL.createObjectURL(this.eventPoster.current!.files![0]),
-      name: this.eventName.current!.value,
-      place: this.eventPlace.current!.value,
-      date: this.eventDate.current!.value,
-      lang: this.eventLang.current!.value,
-      type: this.eventType[0].current!.checked
-        ? this.eventType[0].current!.value
-        : this.eventType[1].current!.value,
-      theme: this.eventTheme.reduce((themes: string[], theme) => {
-        if (theme.current?.checked) {
-          themes.push(theme.current.value);
-        }
-        return themes;
-      }, []),
-    });
-    this.formRef.current?.reset();
+    try {
+      e.preventDefault();
+      this.validate();
+      if (Object.values(this.state).some((state) => state !== '')) return;
+      this.props.create({
+        name: this.eventName.current!.value,
+        place: this.eventPlace.current!.value,
+        date: this.eventDate.current!.value,
+        lang: this.eventLang.current!.value,
+        image: URL.createObjectURL(this.eventPoster.current!.files![0]),
+        type: this.eventType[0].current!.checked
+          ? this.eventType[0].current!.value
+          : this.eventType[1].current!.value,
+        theme: this.eventTheme.reduce((themes: string[], theme) => {
+          if (theme.current?.checked) {
+            themes.push(theme.current.value);
+          }
+          return themes;
+        }, []),
+      });
+      this.formRef.current?.reset();
+    } catch {
+      console.log();
+    }
   }
 
   validate() {

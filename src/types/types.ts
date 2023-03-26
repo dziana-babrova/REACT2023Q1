@@ -107,6 +107,7 @@ export type Card = {
 
 export type FormsPageState = {
   cards: Card[];
+  confirmation: boolean;
 };
 
 export type formProps = {

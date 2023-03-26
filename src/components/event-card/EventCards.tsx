@@ -2,7 +2,7 @@ import React from 'react';
 import { FormsPageState } from 'types/types';
 import { EventCard } from './EventCard';
 
-class EventCards extends React.Component<FormsPageState> {
+class EventCards extends React.Component<Pick<FormsPageState, 'cards'>> {
   constructor(props: FormsPageState) {
     super(props);
   }

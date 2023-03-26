@@ -11,6 +11,7 @@ export class CheckboxInput extends React.Component<CheckboxInputProps> {
           type="checkbox"
           ref={this.props.reference}
           id={this.props.id}
+          value={this.props.label}
         />
         <label htmlFor={this.props.id}>{this.props.label}</label>
         {this.props.errorMessage ? (

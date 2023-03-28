@@ -1,26 +1,23 @@
-import React from 'react';
 import { SelectProps } from 'types/types';
 
-export class Select extends React.Component<SelectProps> {
-  render() {
-    return (
-      <div className={this.props.className}>
-        <select
-          className={this.props.errorMessage ? 'error' : ''}
-          ref={this.props.reference}
-          defaultValue={this.props.defaultText}
-        >
-          <option value={this.props.defaultText} disabled>
-            {this.props.defaultText}
+export const Select = (props: SelectProps) => {
+  return (
+    <div className={props.className}>
+      <select
+        className={props.errorMessage ? 'error' : ''}
+        ref={props.reference}
+        defaultValue={props.defaultText}
+      >
+        <option value={props.defaultText} disabled>
+          {props.defaultText}
+        </option>
+        {props.options.map((option) => (
+          <option key={option} value={option}>
+            {option}
           </option>
-          {this.props.options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <div className="error-message">{this.props.errorMessage}</div>
-      </div>
-    );
-  }
-}
+        ))}
+      </select>
+      <div className="error-message">{props.errorMessage}</div>
+    </div>
+  );
+};

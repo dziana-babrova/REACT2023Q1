@@ -42,7 +42,7 @@ export function validateType(eventType: React.RefObject<HTMLInputElement>[]) {
 export function validatePlace(eventPlace: React.RefObject<HTMLInputElement>) {
   if (!eventPlace.current) return 'Invalid format';
   if (eventPlace.current.value === '') return 'Event Place cannot be empty';
-  if (eventPlace.current.value.length <= 3) return 'Event Place should contain at least 3 symbols';
+  if (eventPlace.current.value.length < 3) return 'Event Place should contain at least 3 symbols';
   return '';
 }
 

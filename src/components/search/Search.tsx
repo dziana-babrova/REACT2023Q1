@@ -1,14 +1,13 @@
 import { LocalStorageKeys } from 'consts/localStorageKeys';
 import React, { useEffect, useRef, useState } from 'react';
-import { SearchProps } from 'types/types';
 
 import './search.scss';
 
-const Search = (props: SearchProps) => {
-  const [searchValue, setSearchValue] = useState(getSearchValueFromLS());
+const Search = () => {
+  const [searchValue, setSearchValue] = useState(
+    window.localStorage.getItem(LocalStorageKeys.search) || ''
+  );
   const searchRef = useRef<string>();
-
-  const { submitValue } = props;
 
   useEffect(() => {
     searchRef.current = searchValue;
@@ -38,13 +37,9 @@ const Search = (props: SearchProps) => {
         value={searchValue}
         onChange={handleChange}
       />
-      <input className="search__button" type="submit" value={submitValue} />
+      <input className="search__button" type="submit" value="search" />
     </form>
   );
 };
-
-function getSearchValueFromLS() {
-  return window.localStorage.getItem(LocalStorageKeys.search) || '';
-}
 
 export { Search };

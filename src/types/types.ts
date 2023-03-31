@@ -1,5 +1,3 @@
-import { useLocation } from 'react-router-dom';
-
 export type SetActiveFunction = (props: {
   isActive: boolean;
   isPending: boolean;
@@ -7,10 +5,6 @@ export type SetActiveFunction = (props: {
 
 export type HeaderProps = {
   location: Location;
-};
-
-export type SearchProps = {
-  submitValue: string;
 };
 
 export type SearchState = {
@@ -37,10 +31,6 @@ export type CardProps = {
   url: string;
   created: string;
 };
-
-export interface WithRouterProps {
-  location: ReturnType<typeof useLocation>;
-}
 
 export type CheckboxInputProps = {
   className: string;

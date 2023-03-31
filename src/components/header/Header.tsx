@@ -1,36 +1,35 @@
 import { Navigation } from 'components/navigation/Navigation';
-import { withRouter } from 'components/withRouter';
-import { WithRouterProps } from 'types/types';
+import { useLocation } from 'react-router-dom';
 import './header.scss';
 
-const setTitle = (path: string) => {
-  switch (path) {
-    case '/': {
-      return 'Home';
-    }
-    case '/about': {
-      return 'About us';
-    }
-    case '/forms': {
-      return 'Forms';
-    }
-    default: {
-      return '404';
-    }
-  }
-};
+const Header = () => {
+  const location = useLocation();
 
-const Header = (props: WithRouterProps) => {
+  const setTitle = (path: string) => {
+    switch (path) {
+      case '/': {
+        return 'Home';
+      }
+      case '/about': {
+        return 'About us';
+      }
+      case '/forms': {
+        return 'Forms';
+      }
+      default: {
+        return '404';
+      }
+    }
+  };
+
   return (
     <header className="header">
       <div className="header__wrapper wrapper">
-        <h1 className="header__title">{setTitle(props.location.pathname)}</h1>
+        <h1 className="header__title">{setTitle(location.pathname)}</h1>
         <Navigation></Navigation>
       </div>
     </header>
   );
 };
 
-const HeaderWithRouter = withRouter(Header);
-
-export { HeaderWithRouter };
+export { Header };

@@ -1,12 +1,20 @@
-import { RadioInputProps } from 'types/types';
+import { UseFormRegisterReturn } from 'react-hook-form/dist/types';
 import './radio.scss';
+
+type RadioInputProps = {
+  className: string;
+  label: string;
+  name: string;
+  errorMessage: string;
+  register: UseFormRegisterReturn;
+};
 
 export const RadioInput = (props: RadioInputProps) => {
   return (
     <div className={props.className}>
       <input
+        {...props.register}
         type="radio"
-        ref={props.reference}
         id={props.label}
         name={props.name}
         value={props.label}

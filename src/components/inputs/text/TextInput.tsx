@@ -1,12 +1,19 @@
-import { TextInputProps } from 'types/types';
+import { UseFormRegisterReturn } from 'react-hook-form';
+
+type TextInputProps = {
+  className: string;
+  id: string;
+  errorMessage: string;
+  register: UseFormRegisterReturn;
+};
 
 export const TextInput = (props: TextInputProps) => {
   return (
     <div className={props.className}>
       <label htmlFor={props.id}></label>
       <input
+        {...props.register}
         type="text"
-        ref={props.reference}
         id={props.id}
         className={props.errorMessage ? 'error' : ''}
       />

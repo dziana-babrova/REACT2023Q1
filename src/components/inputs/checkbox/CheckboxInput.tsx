@@ -1,13 +1,21 @@
-import { CheckboxInputProps } from 'types/types';
+import { UseFormRegisterReturn } from 'react-hook-form/dist/types';
 import './checkbox.scss';
+
+export type CheckboxInputProps = {
+  className: string;
+  id: string;
+  label: string;
+  errorMessage: string;
+  register: UseFormRegisterReturn;
+};
 
 export const CheckboxInput = (props: CheckboxInputProps) => {
   return (
     <div className={props.className}>
       <input
+        {...props.register}
         className={props.className}
         type="checkbox"
-        ref={props.reference}
         id={props.id}
         value={props.label}
       />

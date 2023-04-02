@@ -3,7 +3,12 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import './search.scss';
 
-const Search = () => {
+type SearchProps = {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Search = (props: SearchProps) => {
   const [searchValue, setSearchValue] = useState(
     window.localStorage.getItem(LocalStorageKeys.search) || ''
   );

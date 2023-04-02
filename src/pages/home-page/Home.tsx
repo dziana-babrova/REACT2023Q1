@@ -1,18 +1,25 @@
 import { CardsList } from 'components/cards/CardsList';
 import { Search } from 'components/search/Search';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LocalStorageKeys } from 'consts/localStorageKeys';
+import { CardProps } from 'components/cards/Card';
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState(
     window.localStorage.getItem(LocalStorageKeys.search) || ''
   );
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<CardProps[]>([]);
+
+  useEffect(() => {
+    fetch('https://rickandmortyapi.com/api/character')
+      .then((response) => response.json())
+      .then((data) => setCards(data.results));
+  }, []);
 
   return (
     <main className="wrapper">
-      <Search props={{ searchValue: searchValue, setSearchValue: setSearchValue }} />
-      <CardsList></CardsList>
+      <Search {...{ searchValue, setSearchValue }} />
+      {cards && <CardsList cards={cards}></CardsList>}
     </main>
   );
 };

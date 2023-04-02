@@ -1,12 +1,11 @@
-import data from 'data/data.json';
-import { Card } from './Card';
+import { Card, CardProps } from './Card';
 import './cards.scss';
 
-const CardsList = () => {
+const CardsList = (props: { cards: CardProps[] }) => {
   return (
     <ul className="cards-list">
-      {data.results.map((props) => (
-        <Card key={props.name} {...props}></Card>
+      {props.cards.map((card) => (
+        <Card key={card.name} {...card}></Card>
       ))}
     </ul>
   );

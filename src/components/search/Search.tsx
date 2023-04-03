@@ -1,52 +1,45 @@
 import { LocalStorageKeys } from 'consts/localStorageKeys';
-import React from 'react';
-import { SearchProps, SearchState } from 'types/types';
+import React, { useEffect, useRef, useState } from 'react';
 
 import './search.scss';
 
-class Search extends React.Component<SearchProps, SearchState> {
-  constructor(props: SearchProps) {
-    super(props);
-    this.state = { value: this.getSearchValueFromLS() };
-    window.addEventListener('beforeunload', this.setSearchVAlueToLS.bind(this));
-  }
+const Search = () => {
+  const [searchValue, setSearchValue] = useState(
+    window.localStorage.getItem(LocalStorageKeys.search) || ''
+  );
+  const searchRef = useRef<string>();
 
-  render() {
-    const { value } = this.state;
-    const { submitValue } = this.props;
-    return (
-      <form role="search" className="search__form" onSubmit={this.handleSubmit.bind(this)}>
-        <input
-          className="search__field"
-          type="search"
-          name="name"
-          value={value}
-          onChange={this.handleChange.bind(this)}
-        />
-        <input className="search__button" type="submit" value={submitValue} />
-      </form>
-    );
-  }
+  useEffect(() => {
+    searchRef.current = searchValue;
+  }, [searchValue]);
 
-  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ value: event.target.value });
-  }
+  useEffect(() => {
+    return () => {
+      if (typeof searchRef.current !== 'string') return;
+      window.localStorage.setItem(LocalStorageKeys.search, searchRef.current);
+    };
+  }, [searchRef]);
 
-  handleSubmit(event: React.FormEvent) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-  }
+  };
 
-  componentWillUnmount() {
-    this.setSearchVAlueToLS.call(this);
-  }
-
-  getSearchValueFromLS() {
-    return window.localStorage.getItem(LocalStorageKeys.search) || '';
-  }
-
-  setSearchVAlueToLS() {
-    window.localStorage.setItem(LocalStorageKeys.search, this.state.value);
-  }
-}
+  return (
+    <form role="search" className="search__form" onSubmit={handleSubmit.bind(this)}>
+      <input
+        className="search__field"
+        type="search"
+        name="name"
+        value={searchValue}
+        onChange={handleChange}
+      />
+      <input className="search__button" type="submit" value="search" />
+    </form>
+  );
+};
 
 export { Search };

@@ -1,18 +1,21 @@
-import React from 'react';
-import { FileInputProps } from 'types/types';
+import { UseFormRegisterReturn } from 'react-hook-form/dist/types';
 
-export class FileInput extends React.Component<FileInputProps> {
-  render() {
-    return (
-      <div className={this.props.className}>
-        <input
-          className=""
-          type="file"
-          accept="image/png, image/jpg, image/gif, image/jpeg"
-          ref={this.props.reference}
-        />
-        <div className="error-message">{this.props.errorMessage}</div>
-      </div>
-    );
-  }
-}
+export type FileInputProps = {
+  className: string;
+  errorMessage: string;
+  register: UseFormRegisterReturn;
+};
+
+export const FileInput = (props: FileInputProps) => {
+  return (
+    <div className={props.className}>
+      <input
+        {...props.register}
+        className=""
+        type="file"
+        accept="image/png, image/jpg, image/gif, image/jpeg"
+      />
+      <div className="error-message">{props.errorMessage}</div>
+    </div>
+  );
+};

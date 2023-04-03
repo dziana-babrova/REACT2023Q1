@@ -1,17 +1,16 @@
-import React from 'react';
-import { DateInputProps } from 'types/types';
+import { UseFormRegisterReturn } from 'react-hook-form/dist/types';
 
-export class DateInput extends React.Component<DateInputProps> {
-  render() {
-    return (
-      <div className={this.props.className}>
-        <input
-          type="date"
-          ref={this.props.reference}
-          className={this.props.errorMessage ? 'error' : ''}
-        />
-        <div className="error-message">{this.props.errorMessage}</div>
-      </div>
-    );
-  }
-}
+type DateInputProps = {
+  className: string;
+  errorMessage: string;
+  register: UseFormRegisterReturn;
+};
+
+export const DateInput = (props: DateInputProps) => {
+  return (
+    <div className={props.className}>
+      <input {...props.register} type="date" className={props.errorMessage ? 'error' : ''} />
+      <div className="error-message">{props.errorMessage}</div>
+    </div>
+  );
+};

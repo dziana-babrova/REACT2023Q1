@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { SetActiveFunction } from 'types/types';
+
+type SetActiveFunction = (props: { isActive: boolean; isPending: boolean }) => string | undefined;
 
 const links = [
   {

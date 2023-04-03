@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { HeaderWithRouter } from './header/Header';
+import { Header } from './header/Header';
 
 const Base = () => {
   return (
     <div>
-      <HeaderWithRouter></HeaderWithRouter>
+      <Header />
       <Outlet />
     </div>
   );

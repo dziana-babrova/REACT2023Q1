@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { LocalStorageKeys } from 'consts/localStorageKeys';
 import { CardProps } from 'components/cards/Card';
 import { getCharacters } from 'services/ApiService';
+import { Loader } from 'components/loader/Loader';
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState<string>(
@@ -20,9 +21,6 @@ const HomePage = () => {
   useEffect(() => {
     const getData = async () => {
       setCards(await getCharacters(searchRef.current || ''));
-      setTimeout(() => {
-        console.log('loading');
-      }, 10000);
       setIsLoading(false);
     };
     getData();
@@ -39,7 +37,7 @@ const HomePage = () => {
   return (
     <main className="wrapper">
       <Search {...{ searchValue, setSearchValue, onSubmit }} />
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Loader />}
       {cards.length > 0 && <CardsList {...{ cards }}></CardsList>}
     </main>
   );

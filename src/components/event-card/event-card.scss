@@ -10,7 +10,7 @@
 
 .events-item {
   border-radius: 10px;
-  background-color: white;
+  background-color: $color-card-background;
   flex: 0 0 32%;
   display: flex;
   flex-wrap: wrap;
@@ -50,7 +50,7 @@
   padding: 0 10px;
   font-weight: 900;
   box-sizing: border-box;
-  color: grey;
+  color: $color-card-text-secondary;
 }
 
 .event__address,
@@ -58,6 +58,6 @@
 .event__date,
 .event__lang-item,
 .event__theme-item {
-  color: black;
+  color: $color-card-text-primary;
   font-weight: 400;
 }

@@ -23,8 +23,8 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  background-color: #000000c8;
-  color: rgba(255, 255, 255, 0.802);
+  background-color: $color-dark;
+  color: $color-form-text;
   padding: 20px;
   font-size: large;
 
@@ -74,12 +74,12 @@ input[type=file]::file-selector-button {
 }
 
 .error {
-  border: 2px solid red;
+  border: 2px solid $color-red;
 }
 
 .error-message {
   font-size: small;
-  color: red;
+  color: $color-red;
   padding-top: 2px;
   min-height: 17px;
 }

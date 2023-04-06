@@ -10,8 +10,8 @@
 
 .cards-item {
   border-radius: 10px;
-  background-color: white;
-  flex: 0 0 23%;
+  background-color: $color-card-background;
+  flex: 0 0 23.5%;
   display: flex;
   flex-wrap: wrap;
   font-family: $font-primary;
@@ -53,15 +53,15 @@
 }
 
 .card-status_alive {
-  color: green;
+  color: $color-green;
 }
 
 .card-status_dead {
-  color: red;
+  color: $color-red;
 }
 
 .card-status_unknown {
-  color: blue;
+  color: $color-blue;
 }
 
 .card-gender {

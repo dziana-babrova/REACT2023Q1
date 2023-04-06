@@ -1,28 +1,28 @@
 import { CardsList } from 'components/cards/CardsList';
 import { Search } from 'components/search/Search';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { LocalStorageKeys } from 'consts/localStorageKeys';
 import { CardProps } from 'components/cards/Card';
 import { getCharacters } from 'services/ApiService';
 
 const HomePage = () => {
-  const [searchValue, setSearchValue] = useState<string>('');
+  const [searchValue, setSearchValue] = useState<string>(
+    window.localStorage.getItem(LocalStorageKeys.search) || ''
+  );
   const [cards, setCards] = useState<CardProps[]>([]);
+  const searchRef = useRef<string>();
 
   useEffect(() => {
-    setSearchValue(window.localStorage.getItem(LocalStorageKeys.search) || '');
-  }, []);
+    searchRef.current = searchValue;
+  }, [searchValue]);
 
   useEffect(() => {
-    // getCharacters(setCards, searchValue);
-    fetch(`https://rickandmortyapi.com/api/character/?name=${searchValue}`)
-      .then((response) => response.json())
-      .then((data) => setCards(data.results));
-  }, []);
+    getCharacters(setCards, searchRef.current || '');
+  }, [searchRef]);
 
   return (
     <main className="wrapper">
-      <Search {...{ searchValue, setSearchValue, setCards, cards }} />
+      <Search {...{ searchValue, setSearchValue, setCards }} />
       <CardsList {...{ cards }}></CardsList>
     </main>
   );

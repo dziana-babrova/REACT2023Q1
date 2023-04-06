@@ -1,5 +1,5 @@
 import { LocalStorageKeys } from 'consts/localStorageKeys';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { CardProps } from 'components/cards/Card';
 
 import './search.scss';
@@ -9,16 +9,9 @@ type SearchProps = {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
-  cards: CardProps[];
 };
 
 const Search = ({ searchValue, setSearchValue, setCards }: SearchProps) => {
-  const searchRef = useRef<string>();
-
-  useEffect(() => {
-    searchRef.current = searchValue;
-  }, [searchValue]);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };

@@ -1,33 +1,32 @@
 import { LocalStorageKeys } from 'consts/localStorageKeys';
 import React, { useEffect, useRef } from 'react';
+import { CardProps } from 'components/cards/Card';
 
 import './search.scss';
+import { getCharacters } from 'services/ApiService';
 
 type SearchProps = {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
+  cards: CardProps[];
 };
 
-const Search = (props: SearchProps) => {
+const Search = ({ searchValue, setSearchValue, setCards }: SearchProps) => {
   const searchRef = useRef<string>();
 
   useEffect(() => {
-    searchRef.current = props.searchValue;
-  }, [props.searchValue]);
-
-  useEffect(() => {
-    return () => {
-      if (typeof searchRef.current !== 'string') return;
-      window.localStorage.setItem(LocalStorageKeys.search, searchRef.current);
-    };
-  }, [searchRef]);
+    searchRef.current = searchValue;
+  }, [searchValue]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.setSearchValue(event.target.value);
+    setSearchValue(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    window.localStorage.setItem(LocalStorageKeys.search, searchValue);
+    getCharacters(setCards, searchValue);
   };
 
   return (
@@ -36,7 +35,7 @@ const Search = (props: SearchProps) => {
         className="search__field"
         type="search"
         name="name"
-        value={props.searchValue}
+        value={searchValue}
         onChange={handleChange}
       />
       <input className="search__button" type="submit" value="search" />

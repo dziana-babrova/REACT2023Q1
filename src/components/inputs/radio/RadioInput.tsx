@@ -20,7 +20,7 @@ export const RadioInput = (props: RadioInputProps) => {
         value={props.label}
       />
       <label htmlFor={props.label}>{props.label}</label>
-      {props.errorMessage ? <div className="error-message">{props.errorMessage}</div> : <div></div>}
+      {props.errorMessage && <div className="error-message">{props.errorMessage}</div>}
     </div>
   );
 };

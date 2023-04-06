@@ -20,7 +20,7 @@ export const CheckboxInput = (props: CheckboxInputProps) => {
         value={props.label}
       />
       <label htmlFor={props.id}>{props.label}</label>
-      {props.errorMessage ? <div className="error-message">{props.errorMessage}</div> : <div></div>}
+      {props.errorMessage && <div className="error-message">{props.errorMessage}</div>}
     </div>
   );
 };

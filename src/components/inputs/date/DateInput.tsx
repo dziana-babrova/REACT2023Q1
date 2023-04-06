@@ -9,7 +9,7 @@ type DateInputProps = {
 export const DateInput = (props: DateInputProps) => {
   return (
     <div className={props.className}>
-      <input {...props.register} type="date" className={props.errorMessage ? 'error' : ''} />
+      <input {...props.register} type="date" className={props.errorMessage && 'error'} />
       <div className="error-message">{props.errorMessage}</div>
     </div>
   );

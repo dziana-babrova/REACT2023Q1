@@ -1,9 +1,12 @@
 import { CardProps } from 'components/cards/Card';
 
-type setCardsFunc = React.Dispatch<React.SetStateAction<CardProps[]>>;
-
-export const getCharacters = async (setCards: setCardsFunc, searchValue: string) => {
-  fetch(`https://rickandmortyapi.com/api/character/?name=${searchValue}`)
-    .then((response) => response.json())
-    .then((data) => setCards(data.results));
+export const getCharacters = async (searchValue: string): Promise<CardProps[]> => {
+  try {
+    const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${searchValue}`);
+    const data = await response.json();
+    return data.results;
+  } catch {
+    console.log('Data is not fetched');
+    return [];
+  }
 };

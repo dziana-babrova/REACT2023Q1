@@ -9,6 +9,7 @@ const HomePage = () => {
   const [searchValue, setSearchValue] = useState<string>(
     window.localStorage.getItem(LocalStorageKeys.search) || ''
   );
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [cards, setCards] = useState<CardProps[]>([]);
   const searchRef = useRef<string>();
 
@@ -17,13 +18,29 @@ const HomePage = () => {
   }, [searchValue]);
 
   useEffect(() => {
-    getCharacters(setCards, searchRef.current || '');
+    const getData = async () => {
+      setCards(await getCharacters(searchRef.current || ''));
+      setTimeout(() => {
+        console.log('loading');
+      }, 10000);
+      setIsLoading(false);
+    };
+    getData();
   }, [searchRef]);
+
+  const onSubmit = async () => {
+    setIsLoading(true);
+    window.localStorage.setItem(LocalStorageKeys.search, searchValue);
+    const data = await getCharacters(searchValue);
+    setCards(data);
+    setIsLoading(false);
+  };
 
   return (
     <main className="wrapper">
-      <Search {...{ searchValue, setSearchValue, setCards }} />
-      <CardsList {...{ cards }}></CardsList>
+      <Search {...{ searchValue, setSearchValue, onSubmit }} />
+      {isLoading && <div>Loading...</div>}
+      {cards.length > 0 && <CardsList {...{ cards }}></CardsList>}
     </main>
   );
 };

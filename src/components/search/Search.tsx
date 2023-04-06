@@ -1,25 +1,21 @@
-import { LocalStorageKeys } from 'consts/localStorageKeys';
 import React from 'react';
-import { CardProps } from 'components/cards/Card';
 
 import './search.scss';
-import { getCharacters } from 'services/ApiService';
 
 type SearchProps = {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
+  onSubmit: () => Promise<void>;
 };
 
-const Search = ({ searchValue, setSearchValue, setCards }: SearchProps) => {
+const Search = ({ searchValue, setSearchValue, onSubmit }: SearchProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    window.localStorage.setItem(LocalStorageKeys.search, searchValue);
-    getCharacters(setCards, searchValue);
+    onSubmit();
   };
 
   return (

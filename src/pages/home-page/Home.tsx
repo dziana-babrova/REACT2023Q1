@@ -5,12 +5,14 @@ import { LocalStorageKeys } from 'consts/localStorageKeys';
 import { CardProps } from 'components/cards/Card';
 import { getCharacters } from 'services/ApiService';
 import { Loader } from 'components/loader/Loader';
+import { Modal } from 'components/modal/Modal';
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState<string>(
     window.localStorage.getItem(LocalStorageKeys.search) || ''
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [cards, setCards] = useState<CardProps[]>([]);
   const searchRef = useRef<string>();
 
@@ -38,7 +40,8 @@ const HomePage = () => {
     <main className="wrapper">
       <Search {...{ searchValue, setSearchValue, onSubmit }} />
       {isLoading && <Loader />}
-      {cards.length > 0 && <CardsList {...{ cards }}></CardsList>}
+      {cards.length > 0 && <CardsList {...{ cards, openPopup: setIsModalOpen }}></CardsList>}
+      {isModalOpen && <Modal />}
     </main>
   );
 };

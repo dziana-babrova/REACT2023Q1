@@ -3,6 +3,11 @@
 #root {
   background-color: gainsboro;
   min-height: 100vh;
+  position: relative;
+}
+
+.popup-opened {
+  overflow: hidden;
 }
 
 .wrapper {

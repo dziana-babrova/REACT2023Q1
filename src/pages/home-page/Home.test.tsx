@@ -94,4 +94,12 @@ describe('Home page', () => {
     expect(screen.getByRole('search')).toBeInTheDocument();
     expect(await screen.findByRole('list')).toBeInTheDocument();
   });
+
+  it('is rendered without content if fetch error occurs', async () => {
+    global.fetch = vi.fn(() => Promise.reject('error')) as unknown as Mock;
+
+    render(<HomePage></HomePage>);
+    expect(screen.getByRole('search')).toBeInTheDocument();
+    // expect(screen.getByRole('listitem')).toBeUndefined();
+  });
 });

@@ -14,4 +14,11 @@
   width: 60%;
   height: 500px;
   border-radius: 10px;
+  position: fixed;
+  top: calc(100vh / 2 - 250px)
+}
+
+body:has(#root div div main div.overlay) {
+    overflow: hidden;
+    height: 80vh;
 }

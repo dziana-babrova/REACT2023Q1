@@ -40,7 +40,9 @@ const HomePage = () => {
     <main className="wrapper">
       <Search {...{ searchValue, setSearchValue, onSubmit }} />
       {isLoading && <Loader />}
-      {cards.length > 0 && <CardsList {...{ cards, openPopup: setIsModalOpen }}></CardsList>}
+      {cards && cards.length > 0 && (
+        <CardsList {...{ cards, openPopup: setIsModalOpen }}></CardsList>
+      )}
       {isModalOpen && <Modal />}
     </main>
   );

@@ -14,6 +14,7 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [cards, setCards] = useState<CardProps[]>([]);
+  const [cardNumber, setCardNumber] = useState<number | null>(null);
   const searchRef = useRef<string>();
 
   useEffect(() => {
@@ -36,14 +37,17 @@ const HomePage = () => {
     setIsLoading(false);
   };
 
+  const openModal = (id: number) => {
+    setIsModalOpen(true);
+    setCardNumber(id);
+  };
+
   return (
     <main className="wrapper">
       <Search {...{ searchValue, setSearchValue, onSubmit }} />
       {isLoading && <Loader />}
-      {cards && cards.length > 0 && (
-        <CardsList {...{ cards, openPopup: setIsModalOpen }}></CardsList>
-      )}
-      {isModalOpen && <Modal />}
+      {cards && cards.length > 0 && <CardsList {...{ cards, openModal }}></CardsList>}
+      {isModalOpen && cardNumber && <Modal {...{ id: cardNumber }} />}
     </main>
   );
 };

@@ -1,9 +1,13 @@
 import './modal.scss';
 
-export const Modal = () => {
+type ModalProps = {
+  id: number;
+};
+
+export const Modal = ({ id }: ModalProps) => {
   return (
     <div className="overlay">
-      <div className="popup">Opened</div>
+      <div className="popup">{id}</div>
     </div>
   );
 };

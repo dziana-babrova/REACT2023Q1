@@ -9,7 +9,7 @@ describe('Cards list', () => {
   });
 
   it('contains the correct number of elements', () => {
-    const openPopup = vi.fn();
+    const openModal = vi.fn();
     const cards = [
       {
         id: 17,
@@ -56,7 +56,7 @@ describe('Cards list', () => {
       },
     ];
 
-    render(<CardsList {...{ cards, openPopup }}></CardsList>);
+    render(<CardsList {...{ cards, openModal }}></CardsList>);
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getAllByRole('listitem').length).toEqual(cards.length);
   });

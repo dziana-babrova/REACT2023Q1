@@ -7,22 +7,17 @@ export type CardProps = {
   gender: string;
   origin: {
     name: string;
-    url: string;
   };
   location: {
     name: string;
-    url: string;
   };
   image: string;
-  episode: string[];
-  url: string;
-  created: string;
 };
 
 const Card = (props: CardProps) => {
   const { image, name, gender, status, location } = props;
   return (
-    <li className="cards-item card">
+    <div className="cards-item card">
       <img className="card-image" src={image} alt={name} />
       <div className="card-title">
         <span className="card-name">{name} </span>
@@ -30,7 +25,7 @@ const Card = (props: CardProps) => {
       </div>
       <span className={'card-status ' + selectColor(status)}>{status}</span>
       <p className="card-location card-info">{location.name}</p>
-    </li>
+    </div>
   );
 };
 

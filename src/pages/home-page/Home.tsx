@@ -6,6 +6,7 @@ import { CardProps } from 'components/cards/Card';
 import { getCharacters } from 'services/ApiService';
 import { Loader } from 'components/loader/Loader';
 import { Modal } from 'components/modal/Modal';
+import './home.scss';
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState<string>(
@@ -51,7 +52,11 @@ const HomePage = () => {
     <main className="wrapper">
       <Search {...{ searchValue, setSearchValue, onSubmit }} />
       {isLoading && <Loader />}
-      {cards && cards.length > 0 && <CardsList {...{ cards, openModal }}></CardsList>}
+      {!isLoading && cards && cards.length > 0 ? (
+        <CardsList {...{ cards, openModal }}></CardsList>
+      ) : (
+        <div className="no-results-message">No characters found</div>
+      )}
       {isModalOpen && cardNumber && <Modal {...{ id: cardNumber, closeModal }} />}
     </main>
   );

@@ -42,12 +42,17 @@ const HomePage = () => {
     setCardNumber(id);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCardNumber(null);
+  };
+
   return (
     <main className="wrapper">
       <Search {...{ searchValue, setSearchValue, onSubmit }} />
       {isLoading && <Loader />}
       {cards && cards.length > 0 && <CardsList {...{ cards, openModal }}></CardsList>}
-      {isModalOpen && cardNumber && <Modal {...{ id: cardNumber }} />}
+      {isModalOpen && cardNumber && <Modal {...{ id: cardNumber, closeModal }} />}
     </main>
   );
 };

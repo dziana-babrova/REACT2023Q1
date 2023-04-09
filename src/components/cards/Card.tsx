@@ -14,8 +14,7 @@ export type CardProps = {
   image: string;
 };
 
-const Card = (props: CardProps) => {
-  const { image, name, gender, status, location } = props;
+const Card = ({ image, name, gender, status, location }: CardProps) => {
   return (
     <div className="cards-item card">
       <img className="card-image" src={image} alt={name} />

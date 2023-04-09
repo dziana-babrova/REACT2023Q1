@@ -9,18 +9,12 @@ type RadioInputProps = {
   register: UseFormRegisterReturn;
 };
 
-export const RadioInput = (props: RadioInputProps) => {
+export const RadioInput = ({ className, label, name, errorMessage, register }: RadioInputProps) => {
   return (
-    <div className={props.className}>
-      <input
-        {...props.register}
-        type="radio"
-        id={props.label}
-        name={props.name}
-        value={props.label}
-      />
-      <label htmlFor={props.label}>{props.label}</label>
-      {props.errorMessage && <div className="error-message">{props.errorMessage}</div>}
+    <div className={className}>
+      <input {...register} type="radio" id={label} name={name} value={label} />
+      <label htmlFor={label}>{label}</label>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
     </div>
   );
 };

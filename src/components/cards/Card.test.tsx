@@ -12,7 +12,6 @@ describe('Card', () => {
   it('contains appropriate elements', () => {
     const item = data.results[0];
     render(<Card {...item}></Card>);
-    expect(screen.getByRole('listitem')).toBeInTheDocument();
     expect(screen.getByAltText(item.name)).toBeInTheDocument();
     expect(screen.getByText(item.name)).toBeInTheDocument();
     expect(screen.getByText(item.gender)).toBeInTheDocument();

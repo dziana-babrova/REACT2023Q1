@@ -9,16 +9,75 @@
   justify-content: center;
 }
 
-.popup {
-  background-color: $color-card-background;
-  width: 60%;
-  height: 500px;
-  border-radius: 10px;
-  position: fixed;
-  top: calc(100vh / 2 - 250px)
-}
-
 body:has(#root div div main div.overlay) {
     overflow: hidden;
     height: 80vh;
+}
+
+.popup {
+  background-color: $color-card-background;
+  margin: 0 auto;
+  width: 700px;
+  height: 350px;
+  border-radius: 10px;
+  position: fixed;
+  top: calc(100vh / 2 - 250px);
+  left: calc(100vw / 2  - 350px);
+}
+
+.popup-card {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-card__image {
+  height: 100%;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.popup-card__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  font-family: $font-primary;
+  gap: 10px;
+  margin: 20px 10px;
+}
+
+.popup-card__name,
+.popup-card__gender,
+.popup-card__status,
+.popup-card__location,
+.popup-card__species,
+.popup-card__type {
+  flex: 0 0 100%;
+  margin: 0;
+}
+
+.popup-card__name {
+  text-align: center;
+  font-size: larger;
+  font-weight: 700;
+}
+
+.popup-card__status {
+  text-align: center;
+}
+
+.popup-card__label {
+  font-weight: 700;
+}
+
+.popup-card__gender,
+.popup-card__status,
+.popup-card__location,
+.popup-card__species,
+.popup-card__type {
+  flex: 0 0 100%;
+  margin: 0;
+  padding-bottom: 5px;
 }

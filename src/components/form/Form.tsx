@@ -35,7 +35,7 @@ const langs = ['English', 'German', 'French', 'Italian', 'Chinese'];
 const types = ['online', 'offline'];
 const themes = ['character', 'episode', 'season', 'news about show'];
 
-const Form = (props: formProps) => {
+const Form = ({ create }: formProps) => {
   const {
     register,
     handleSubmit,
@@ -46,7 +46,7 @@ const Form = (props: formProps) => {
 
   const onSubmit = () => {
     const card = getValues();
-    props.create({
+    create({
       name: card.name,
       place: card.place,
       date: card.date.toLocaleDateString(),

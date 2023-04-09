@@ -1,12 +1,17 @@
 import { Card, CardProps } from './Card';
 import './cards.scss';
 
-const CardsList = (props: { cards: CardProps[]; openModal: (id: number) => void }) => {
+type CardsListProps = {
+  cards: CardProps[];
+  openModal: (id: number) => void;
+};
+
+const CardsList = ({ cards, openModal }: CardsListProps) => {
   return (
     <ul className="cards-list">
-      {props.cards.map((card) => (
+      {cards.map((card) => (
         <li
-          onClick={props.openModal.bind(this, card.id)}
+          onClick={openModal.bind(this, card.id)}
           value={card.id}
           className="card-container"
           key={'characterCard-' + card.id}

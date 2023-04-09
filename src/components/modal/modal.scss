@@ -81,3 +81,16 @@ body:has(#root div div main div.overlay) {
   margin: 0;
   padding-bottom: 5px;
 }
+
+.popup__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url('./../../assets/cross.svg');
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+}

@@ -100,6 +100,6 @@ describe('Home page', () => {
 
     render(<HomePage></HomePage>);
     expect(screen.getByRole('search')).toBeInTheDocument();
-    // expect(screen.getByRole('listitem')).toBeUndefined();
+    expect(await screen.findByText('No characters found')).toBeInTheDocument();
   });
 });

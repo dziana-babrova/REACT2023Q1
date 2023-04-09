@@ -59,11 +59,11 @@ export const Modal = ({ id, closeModal }: ModalProps) => {
                 <span className="popup-card__label">Location:</span> {card.location.name}
               </p>
             </div>
-            <span className="popup__close-button" onClick={closeModal}></span>
           </div>
         ) : (
-          <div></div>
+          <div>An error occurred. Try again later</div>
         )}
+        <span className="popup__close-button" onClick={closeModal}></span>
       </div>
     </div>
   );

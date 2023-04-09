@@ -23,6 +23,10 @@ body:has(#root div div main div.overlay) {
   position: fixed;
   top: calc(100vh / 2 - 250px);
   left: calc(100vw / 2  - 350px);
+  font-family: $font-primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup-card {
@@ -43,7 +47,6 @@ body:has(#root div div main div.overlay) {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  font-family: $font-primary;
   gap: 10px;
   margin: 20px 10px;
 }

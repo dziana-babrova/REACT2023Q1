@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 
 import { DateInput } from './DateInput';
-import { createRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 describe('Input of type date', () => {
   afterEach(() => {
@@ -10,13 +10,27 @@ describe('Input of type date', () => {
   });
 
   it('is rendered with error', () => {
-    const dateProps = {
+    const props = {
       className: 'test',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: 'error',
     };
 
-    render(<DateInput {...dateProps}></DateInput>);
-    expect(screen.getByText(dateProps.errorMessage)).toBeInTheDocument();
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const dateProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <DateInput {...dateProps}></DateInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
+    expect(screen.getByText(props.errorMessage)).toBeInTheDocument();
   });
 });

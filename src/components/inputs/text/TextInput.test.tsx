@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 
 import { TextInput } from './TextInput';
-import { createRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 describe('Input of type text', () => {
   afterEach(() => {
@@ -10,31 +10,59 @@ describe('Input of type text', () => {
   });
 
   it('is rendered', () => {
-    const textInputProps = {
+    const props = {
       className: 'test',
       id: 'test-id',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: '',
     };
 
-    render(<TextInput {...textInputProps}></TextInput>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const textInputProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <TextInput {...textInputProps}></TextInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const textbox = expect(screen.getByRole('textbox'));
     textbox.toBeInTheDocument();
-    textbox.toHaveAttribute('id', textInputProps.id);
+    textbox.toHaveAttribute('id', props.id);
   });
 
   it('is rendered with error', () => {
-    const textInputProps = {
+    const props = {
       className: 'test',
       id: 'test-id',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: 'error',
     };
 
-    render(<TextInput {...textInputProps}></TextInput>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const textInputProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <TextInput {...textInputProps}></TextInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const textbox = expect(screen.getByRole('textbox'));
     textbox.toBeInTheDocument();
-    textbox.toHaveAttribute('id', textInputProps.id);
-    expect(screen.getByText(textInputProps.errorMessage)).toBeInTheDocument();
+    textbox.toHaveAttribute('id', props.id);
+    expect(screen.getByText(props.errorMessage)).toBeInTheDocument();
   });
 });

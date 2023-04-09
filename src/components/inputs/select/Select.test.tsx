@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 
 import { Select } from './Select';
-import { createRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 describe('Select', () => {
   afterEach(() => {
@@ -10,32 +10,60 @@ describe('Select', () => {
   });
 
   it('is rendered', () => {
-    const selectProps = {
+    const props = {
       className: 'test',
       defaultText: 'test-text',
       options: ['one', 'two', 'three'],
-      reference: createRef<HTMLSelectElement>(),
       errorMessage: '',
     };
 
-    render(<Select {...selectProps}></Select>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const selectProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <Select {...selectProps}></Select>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const option = expect(screen.getAllByRole('option'));
-    option.toHaveLength(selectProps.options.length + 1);
+    option.toHaveLength(props.options.length + 1);
     expect(screen.getByRole('combobox')).toBeInTheDocument();
   });
 
   it('is rendered with error', () => {
-    const selectProps = {
+    const props = {
       className: 'test',
       defaultText: 'test-text',
       options: ['one', 'two', 'three'],
-      reference: createRef<HTMLSelectElement>(),
       errorMessage: 'error',
     };
 
-    render(<Select {...selectProps}></Select>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const selectProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <Select {...selectProps}></Select>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const select = expect(screen.getByRole('combobox'));
     select.toBeInTheDocument();
-    expect(screen.getByText(selectProps.errorMessage)).toBeInTheDocument();
+    expect(screen.getByText(props.errorMessage)).toBeInTheDocument();
   });
 });

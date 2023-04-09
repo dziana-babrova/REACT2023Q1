@@ -13,23 +13,38 @@
 
 .header__wrapper {
   display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
 .header__title {
-    flex: 0 0 55%;
     text-transform: uppercase;
     text-align: start;
     font-size: xx-large;
+
+    @media screen and (max-width: 768px) {
+      font-size: larger;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: larger;
+    }
 }
 
 .header__navigation {
-  flex: 0 0 45%;
   display: flex;
   justify-content: end;
   align-items: center;
   gap: 30px;
   font-size: x-large;
+
+    @media screen and (max-width: 768px) {
+      font-size: large;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: medium;
+    }
 }
 
 .header__link {

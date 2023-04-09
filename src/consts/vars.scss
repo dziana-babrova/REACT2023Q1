@@ -11,6 +11,10 @@
   &:hover {
     background-color: #e90101df;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: small;
+  }
 }
 
 $font-primary: 'Comfortaa', cursive;

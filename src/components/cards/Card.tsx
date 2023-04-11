@@ -25,15 +25,4 @@ const Card = ({ image, name }: CardProps) => {
   );
 };
 
-// function selectColor(status: string) {
-//   switch (status.toLowerCase()) {
-//     case 'alive':
-//       return 'card-status_alive';
-//     case 'dead':
-//       return 'card-status_dead';
-//     default:
-//       return 'card-status_unknown';
-//   }
-// }
-
 export { Card };

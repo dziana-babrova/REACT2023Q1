@@ -23,6 +23,7 @@ const HomePage = () => {
   }, [searchValue]);
 
   useEffect(() => {
+    setIsLoading(true);
     const getData = async () => {
       setCards(await getCharacters(searchRef.current || ''));
       setIsLoading(false);
@@ -51,12 +52,7 @@ const HomePage = () => {
   return (
     <main className="wrapper">
       <Search {...{ searchValue, setSearchValue, onSubmit }} />
-      {isLoading && <Loader />}
-      {!isLoading && cards && cards.length > 0 ? (
-        <CardsList {...{ cards, openModal }}></CardsList>
-      ) : (
-        <div className="no-results-message">No characters found</div>
-      )}
+      {isLoading ? <Loader /> : <CardsList {...{ cards, openModal }}></CardsList>}
       {isModalOpen && cardNumber && <Modal {...{ id: cardNumber, closeModal }} />}
     </main>
   );

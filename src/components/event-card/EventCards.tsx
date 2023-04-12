@@ -1,10 +1,14 @@
-import { FormsPageState } from 'types/types';
 import { EventCard } from './EventCard';
+import { Card } from 'components/form/Form';
 
-const EventCards = (props: Pick<FormsPageState, 'cards'>) => {
+type EventCardsProps = {
+  cards: Card[];
+};
+
+const EventCards = ({ cards }: EventCardsProps) => {
   return (
     <ul className="events">
-      {props.cards.map((card) => (
+      {cards.map((card) => (
         <EventCard key={card.name} {...card} />
       ))}
     </ul>

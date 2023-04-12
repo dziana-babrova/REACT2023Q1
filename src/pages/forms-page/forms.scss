@@ -8,6 +8,10 @@
   font-weight: 900;
   font-size: xx-large;
   text-align: center;
+
+    @media screen and (max-width: 768px) {
+      font-size: x-large;
+    }
 }
 
 .form-background {
@@ -23,8 +27,8 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  background-color: #000000c8;
-  color: rgba(255, 255, 255, 0.802);
+  background-color: $color-dark;
+  color: $color-form-text;
   padding: 20px;
   font-size: large;
 
@@ -36,20 +40,16 @@
     padding: 0 10px;
     box-sizing: border-box;
     height: 30px;
-  }
 
-  select {
-    width: 100%;
+    @media screen and (max-width: 480px) {
+      width: 100%;
+    }
   }
 }
 
 .event-form__label,
 .event-form__input {
   flex: 0 0 100%;
-}
-
-.select {
-  flex: 0 0 50%;
 }
 
 .event-form__label {
@@ -74,12 +74,12 @@ input[type=file]::file-selector-button {
 }
 
 .error {
-  border: 2px solid red;
+  border: 2px solid $color-red;
 }
 
 .error-message {
   font-size: small;
-  color: red;
+  color: $color-red;
   padding-top: 2px;
   min-height: 17px;
 }

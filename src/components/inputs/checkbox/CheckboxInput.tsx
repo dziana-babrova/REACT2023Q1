@@ -9,18 +9,18 @@ export type CheckboxInputProps = {
   register: UseFormRegisterReturn;
 };
 
-export const CheckboxInput = (props: CheckboxInputProps) => {
+export const CheckboxInput = ({
+  className,
+  register,
+  id,
+  label,
+  errorMessage,
+}: CheckboxInputProps) => {
   return (
-    <div className={props.className}>
-      <input
-        {...props.register}
-        className={props.className}
-        type="checkbox"
-        id={props.id}
-        value={props.label}
-      />
-      <label htmlFor={props.id}>{props.label}</label>
-      {props.errorMessage ? <div className="error-message">{props.errorMessage}</div> : <div></div>}
+    <div className={className}>
+      <input {...register} className={className} type="checkbox" id={id} value={label} />
+      <label htmlFor={id}>{label}</label>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
     </div>
   );
 };

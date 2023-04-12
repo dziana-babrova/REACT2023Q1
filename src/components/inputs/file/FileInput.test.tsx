@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 
 import { FileInput } from './FileInput';
-import { createRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 describe('Input of type file', () => {
   afterEach(() => {
@@ -10,13 +10,27 @@ describe('Input of type file', () => {
   });
 
   it('is rendered with error', () => {
-    const fileProps = {
+    const props = {
       className: 'test',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: 'error',
     };
 
-    render(<FileInput {...fileProps}></FileInput>);
-    expect(screen.getByText(fileProps.errorMessage)).toBeInTheDocument();
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const fileProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <FileInput {...fileProps}></FileInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
+    expect(screen.getByText(props.errorMessage)).toBeInTheDocument();
   });
 });

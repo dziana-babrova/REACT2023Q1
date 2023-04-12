@@ -1,31 +1,21 @@
-import { LocalStorageKeys } from 'consts/localStorageKeys';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import './search.scss';
 
-const Search = () => {
-  const [searchValue, setSearchValue] = useState(
-    window.localStorage.getItem(LocalStorageKeys.search) || ''
-  );
-  const searchRef = useRef<string>();
+type SearchProps = {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  onSubmit: () => Promise<void>;
+};
 
-  useEffect(() => {
-    searchRef.current = searchValue;
-  }, [searchValue]);
-
-  useEffect(() => {
-    return () => {
-      if (typeof searchRef.current !== 'string') return;
-      window.localStorage.setItem(LocalStorageKeys.search, searchRef.current);
-    };
-  }, [searchRef]);
-
+const Search = ({ searchValue, setSearchValue, onSubmit }: SearchProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    onSubmit();
   };
 
   return (

@@ -1,8 +1,7 @@
-import { Card } from 'types/types';
+import { Card } from 'components/form/Form';
 import './event-card.scss';
 
-const EventCard = (props: Card) => {
-  const { name, lang, place, date, type, image, theme } = props;
+const EventCard = ({ name, lang, place, date, type, image, theme }: Card) => {
   return (
     <li className="events-item event">
       <img className="event__image" src={image} alt={name} />

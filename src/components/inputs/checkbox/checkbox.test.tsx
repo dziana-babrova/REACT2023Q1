@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 
 import { CheckboxInput } from './CheckboxInput';
-import { createRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 describe('Input of type checkbox', () => {
   afterEach(() => {
@@ -10,34 +10,62 @@ describe('Input of type checkbox', () => {
   });
 
   it('is rendered', () => {
-    const checkboxProps = {
+    const props = {
       className: 'test',
       id: 'test-id',
       label: 'test-label',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: '',
     };
 
-    render(<CheckboxInput {...checkboxProps}></CheckboxInput>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const checkboxProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <CheckboxInput {...checkboxProps}></CheckboxInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const checkbox = expect(screen.getByRole('checkbox'));
     checkbox.toBeInTheDocument();
-    checkbox.toHaveAttribute('id', checkboxProps.id);
-    checkbox.toHaveClass(checkboxProps.className);
+    checkbox.toHaveAttribute('id', props.id);
+    checkbox.toHaveClass(props.className);
   });
 
   it('is rendered with error', () => {
-    const checkboxProps = {
+    const props = {
       className: 'test',
       id: 'test-id',
       label: 'test-label',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: 'error',
     };
 
-    render(<CheckboxInput {...checkboxProps}></CheckboxInput>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const checkboxProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <CheckboxInput {...checkboxProps}></CheckboxInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const checkbox = expect(screen.getByRole('checkbox'));
     checkbox.toBeInTheDocument();
-    checkbox.toHaveAttribute('id', checkboxProps.id);
-    expect(screen.getByText(checkboxProps.errorMessage)).toBeInTheDocument();
+    checkbox.toHaveAttribute('id', props.id);
+    expect(screen.getByText(props.errorMessage)).toBeInTheDocument();
   });
 });

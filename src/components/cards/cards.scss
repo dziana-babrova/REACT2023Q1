@@ -8,11 +8,42 @@
   width: 100%;
 }
 
-.cards-item {
+.card-container {
   border-radius: 10px;
-  background-color: white;
-  flex: 1 1 23%;
+  flex: 0 0 23.5%;
   display: flex;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: transform ease-in-out 0.2s;
+  font-weight: 900;
+  font-size: large;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  @media screen and (max-width: 1100px) {
+    flex: 0 0 23%;
+    font-size: medium;
+  }
+
+  @media screen and (max-width: 860px) {
+    flex: 0 0 30%;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: small;
+  }
+
+  @media screen and (max-width: 480px) {
+    flex: 0 0 45%;
+  }
+}
+
+.cards-item {
+  display: flex;
+  border-radius: 10px;
+  background-color: $color-card-background;
   flex-wrap: wrap;
   font-family: $font-primary;
 }
@@ -34,37 +65,4 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.card-name {
-  font-weight: 900;
-  font-size: large;
-}
-
-.card-info {
-  flex: 0 0 100%;
-}
-
-.card-status,
-.card-location {
-  padding: 0 10px;
-  font-weight: 900;
-  box-sizing: border-box;
-}
-
-.card-status_alive {
-  color: green;
-}
-
-.card-status_dead {
-  color: red;
-}
-
-.card-status_unknown {
-  color: blue;
-}
-
-.card-gender {
-  font-size: small;
-  vertical-align: baseline;
 }

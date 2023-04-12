@@ -21,25 +21,35 @@ export type formProps = {
   create: (newCard: Card) => void;
 };
 
+type FormProps = {
+  name: string;
+  place: string;
+  date: Date;
+  lang: string;
+  poster: FileList;
+  type: string;
+  theme: string[];
+};
+
 const langs = ['English', 'German', 'French', 'Italian', 'Chinese'];
 const types = ['online', 'offline'];
 const themes = ['character', 'episode', 'season', 'news about show'];
 
-const Form = (props: formProps) => {
+const Form = ({ create }: formProps) => {
   const {
     register,
     handleSubmit,
     getValues,
     reset,
     formState: { errors },
-  } = useForm({ reValidateMode: 'onSubmit', mode: 'onSubmit' });
+  } = useForm<FormProps>({ reValidateMode: 'onSubmit', mode: 'onSubmit' });
 
   const onSubmit = () => {
     const card = getValues();
-    props.create({
+    create({
       name: card.name,
       place: card.place,
-      date: (card.date as Date).toLocaleDateString(),
+      date: card.date.toLocaleDateString(),
       lang: card.lang,
       image: URL.createObjectURL(card.poster[0]),
       type: card.type,

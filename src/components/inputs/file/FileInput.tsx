@@ -6,16 +6,16 @@ export type FileInputProps = {
   register: UseFormRegisterReturn;
 };
 
-export const FileInput = (props: FileInputProps) => {
+export const FileInput = ({ className, errorMessage, register }: FileInputProps) => {
   return (
-    <div className={props.className}>
+    <div className={className}>
       <input
-        {...props.register}
+        {...register}
         className=""
         type="file"
         accept="image/png, image/jpg, image/gif, image/jpeg"
       />
-      <div className="error-message">{props.errorMessage}</div>
+      <div className="error-message">{errorMessage}</div>
     </div>
   );
 };

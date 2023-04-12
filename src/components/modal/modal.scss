@@ -1,0 +1,133 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-overlay-background;
+  display: flex;
+  justify-content: center;
+}
+
+body:has(#root div div main div.overlay) {
+    overflow: hidden;
+    height: 80vh;
+    margin: 0 auto;
+}
+
+.popup {
+  background-color: $color-card-background;
+  margin: 0 auto;
+  width: 700px;
+  height: 350px;
+  border-radius: 10px;
+  position: fixed;
+  top: calc(100vh / 2 - 250px);
+  left: calc(100vw / 2  - 350px);
+  font-family: $font-primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 860px) {
+    width: 500px;
+    height: 250px;
+    left: calc(100vw / 2  - 250px);
+  }
+
+  @media screen and (max-width: 600px) {
+    max-width: 400px;
+    height: auto;
+    left: calc(100vw / 2  - 250px);
+  }
+}
+
+.popup-card {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.popup-card__image {
+  height: 100%;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+
+  @media screen and (max-width: 600px) {
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 10px;
+  }
+}
+
+.popup-card__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
+  margin: 20px 10px;
+}
+
+.popup-card__name,
+.popup-card__gender,
+.popup-card__status,
+.popup-card__location,
+.popup-card__species,
+.popup-card__type {
+  flex: 0 0 100%;
+  margin: 0;
+}
+
+.popup-card__name {
+  text-align: center;
+  font-size: larger;
+  font-weight: 700;
+}
+
+.popup-card__status {
+  text-align: center;
+}
+
+.popup-card__label {
+  font-weight: 700;
+}
+
+.popup-card__gender,
+.popup-card__status,
+.popup-card__location,
+.popup-card__species,
+.popup-card__type {
+  flex: 0 0 100%;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+.popup__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url('./../../assets/cross.svg');
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.card-status_alive {
+  color: $color-green;
+}
+
+.card-status_dead {
+  color: $color-red;
+}
+
+.card-status_unknown {
+  color: $color-blue;
+}

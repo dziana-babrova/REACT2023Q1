@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 
 import { RadioInput } from './RadioInput';
-import { createRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 describe('Input of type radio', () => {
   afterEach(() => {
@@ -10,34 +10,62 @@ describe('Input of type radio', () => {
   });
 
   it('is rendered', () => {
-    const radioProps = {
+    const props = {
       className: 'test',
       name: 'test-name',
       label: 'test-label',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: '',
     };
 
-    render(<RadioInput {...radioProps}></RadioInput>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const radioProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <RadioInput {...radioProps}></RadioInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const radio = expect(screen.getByRole('radio'));
     radio.toBeInTheDocument();
-    radio.toHaveAttribute('name', radioProps.name);
-    expect(screen.getByText(radioProps.label)).toBeInTheDocument();
+    radio.toHaveAttribute('name', props.name);
+    expect(screen.getByText(props.label)).toBeInTheDocument();
   });
 
   it('is rendered with error', () => {
-    const radioProps = {
+    const props = {
       className: 'test',
       name: 'test-name',
       label: 'test-label',
-      reference: createRef<HTMLInputElement>(),
       errorMessage: 'error',
     };
 
-    render(<RadioInput {...radioProps}></RadioInput>);
+    const Wrapper = () => {
+      const { register } = useForm();
+
+      const radioProps = {
+        ...props,
+        register: register('name'),
+      };
+
+      return (
+        <div>
+          <RadioInput {...radioProps}></RadioInput>
+        </div>
+      );
+    };
+
+    render(<Wrapper />);
     const radio = expect(screen.getByRole('radio'));
     radio.toBeInTheDocument();
-    radio.toHaveAttribute('name', radioProps.name);
-    expect(screen.getByText(radioProps.errorMessage)).toBeInTheDocument();
+    radio.toHaveAttribute('name', props.name);
+    expect(screen.getByText(props.errorMessage)).toBeInTheDocument();
   });
 });

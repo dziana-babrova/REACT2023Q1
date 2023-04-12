@@ -6,11 +6,11 @@ type DateInputProps = {
   register: UseFormRegisterReturn;
 };
 
-export const DateInput = (props: DateInputProps) => {
+export const DateInput = ({ className, register, errorMessage }: DateInputProps) => {
   return (
-    <div className={props.className}>
-      <input {...props.register} type="date" className={props.errorMessage ? 'error' : ''} />
-      <div className="error-message">{props.errorMessage}</div>
+    <div className={className}>
+      <input {...register} type="date" className={errorMessage && 'error'} />
+      <div className="error-message">{errorMessage}</div>
     </div>
   );
 };

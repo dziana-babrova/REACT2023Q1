@@ -1,13 +1,28 @@
-import data from 'data/data.json';
-import { Card } from './Card';
+import { Card, CardProps } from './Card';
 import './cards.scss';
 
-const CardsList = () => {
+type CardsListProps = {
+  cards: CardProps[];
+  openModal: (id: number) => void;
+};
+
+const CardsList = ({ cards, openModal }: CardsListProps) => {
   return (
     <ul className="cards-list">
-      {data.results.map((props) => (
-        <Card key={props.name} {...props}></Card>
-      ))}
+      {cards && cards.length > 0 ? (
+        cards.map((card) => (
+          <li
+            onClick={openModal.bind(this, card.id)}
+            value={card.id}
+            className="card-container"
+            key={'characterCard-' + card.id}
+          >
+            <Card {...card}></Card>
+          </li>
+        ))
+      ) : (
+        <div className="no-results-message">No characters found</div>
+      )}
     </ul>
   );
 };

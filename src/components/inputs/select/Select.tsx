@@ -8,25 +8,31 @@ export type SelectProps = {
   register: UseFormRegisterReturn;
 };
 
-export const Select = (props: SelectProps) => {
+export const Select = ({
+  className,
+  defaultText,
+  options,
+  errorMessage,
+  register,
+}: SelectProps) => {
   return (
-    <div className={props.className}>
+    <div className={className}>
       <select
-        className={props.errorMessage ? 'error' : ''}
-        defaultValue={props.defaultText}
-        placeholder={props.defaultText}
-        {...props.register}
+        className={errorMessage ? 'error' : ''}
+        defaultValue={defaultText}
+        placeholder={defaultText}
+        {...register}
       >
-        <option value={props.defaultText} disabled>
-          {props.defaultText}
+        <option value={defaultText} disabled>
+          {defaultText}
         </option>
-        {props.options.map((option) => (
+        {options.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
-      <div className="error-message">{props.errorMessage}</div>
+      <div className="error-message">{errorMessage}</div>
     </div>
   );
 };

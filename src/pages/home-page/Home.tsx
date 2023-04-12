@@ -27,8 +27,7 @@ const HomePage = () => {
 
   const onSubmit = async () => {
     setIsLoading(true);
-    const data = await getCharacters(search);
-    setCards(data);
+    setCards(await getCharacters(search));
     setIsLoading(false);
   };
 

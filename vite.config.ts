@@ -13,6 +13,8 @@ export default defineConfig({
       data: '/src/data',
       consts: '/src/consts',
       services: '/src/services',
+      reducers: '/src/reducers',
+      store: '/src/store',
     },
   },
   test: {

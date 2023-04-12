@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSearchValue, change } from 'reducers/SearchReducer';
 
 import './search.scss';
 
 type SearchProps = {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   onSubmit: () => Promise<void>;
 };
 
-const Search = ({ searchValue, setSearchValue, onSubmit }: SearchProps) => {
+const Search = ({ onSubmit }: SearchProps) => {
+  const search = useSelector(getSearchValue);
+  const [currentSearchValue, setCurrentSearchValue] = useState(search);
+  const dispatch = useDispatch();
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
+    setCurrentSearchValue(event.target.value);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    dispatch(change(currentSearchValue));
     onSubmit();
   };
 
@@ -24,7 +29,7 @@ const Search = ({ searchValue, setSearchValue, onSubmit }: SearchProps) => {
         className="search__field"
         type="search"
         name="name"
-        value={searchValue}
+        value={currentSearchValue}
         onChange={handleChange}
       />
       <input className="search__button" type="submit" value="search" />

@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { eventSlice } from 'reducers/NewEventFormReducer';
+import { characterSlice } from 'reducers/CharactersReducer';
+import { eventSlice } from 'reducers/EventsReducer';
 import { searchSlice } from 'reducers/SearchReducer';
 
 const store = configureStore({
   reducer: {
     search: searchSlice.reducer,
     events: eventSlice.reducer,
+    characters: characterSlice.reducer,
   },
 });
 

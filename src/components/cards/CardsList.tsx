@@ -12,7 +12,7 @@ const CardsList = ({ openModal }: CardsListProps) => {
 
   return (
     <ul className="cards-list">
-      {cards.length > 0 ? (
+      {cards && cards.length > 0 ? (
         cards.map((card) => (
           <li
             onClick={openModal.bind(this, card.id)}

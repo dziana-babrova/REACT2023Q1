@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from 'store/Store';
+import { fetchCharacters } from 'reducers/CharactersReducer';
 import { getSearchValue, change } from 'reducers/SearchReducer';
 
 import './search.scss';
 
-type SearchProps = {
-  onSubmit: () => Promise<void>;
-};
-
-const Search = ({ onSubmit }: SearchProps) => {
+const Search = () => {
   const search = useSelector(getSearchValue);
   const [currentSearchValue, setCurrentSearchValue] = useState(search);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchCharacters(search));
+  }, [dispatch, search]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSearchValue(event.target.value);
@@ -20,7 +22,6 @@ const Search = ({ onSubmit }: SearchProps) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     dispatch(change(currentSearchValue));
-    onSubmit();
   };
 
   return (

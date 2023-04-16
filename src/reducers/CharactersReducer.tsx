@@ -1,38 +1,40 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { CardProps } from 'components/cards/Card';
+import { getCharacters } from 'services/ApiService';
 import { RootState } from 'store/Store';
 
 export type CharactersGetRequestProps = {
   status: 'idle' | 'pending' | 'completed' | 'failed';
-  error: string | null;
+  error: string | undefined;
   cards: CardProps[];
 };
 
 const initialState: CharactersGetRequestProps = {
   cards: [],
   status: 'idle',
-  error: null,
+  error: undefined,
 };
 
-export const fetchCharacters = createAsyncThunk(
-  'characters/fetchCharacters',
-  async (searchValue: string) => {
-    const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${searchValue}`);
-    const data: { results: CardProps } = await response.json();
-    return data.results;
-  }
-);
+export const fetchCharacters = createAsyncThunk('characters/fetchCharacters', getCharacters);
 
-export const characterSlice = createSlice({
+export const charactersSlice = createSlice({
   name: 'characters',
   initialState,
-  reducers: {
-    setCharacters: (state, actions: PayloadAction<CardProps[]>) => {
-      state.cards = [...actions.payload];
-    },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchCharacters.pending, (state) => {
+        state.status = 'pending';
+      })
+      .addCase(fetchCharacters.fulfilled, (state, action) => {
+        state.status = 'completed';
+        state.cards = action.payload;
+      })
+      .addCase(fetchCharacters.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
   },
 });
 
 export const getCharactersState = (state: RootState) => state.characters.cards;
-
-export const { setCharacters } = characterSlice.actions;

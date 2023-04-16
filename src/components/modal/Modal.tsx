@@ -1,25 +1,16 @@
-import { useState, useEffect } from 'react';
-import { CardProps } from 'components/cards/Card';
-import './modal.scss';
-import { getCharacter } from 'services/ApiService';
+import { useSelector } from 'react-redux';
 import { Loader } from 'components/loader/Loader';
+import './modal.scss';
+import { RootState } from 'store/Store';
+import { getCharacterState } from 'reducers/CharacterSlice';
 
 type ModalProps = {
-  id: number;
   closeModal: () => void;
 };
 
-export const Modal = ({ id, closeModal }: ModalProps) => {
-  const [card, setCard] = useState<CardProps | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const getData = async () => {
-      setCard(await getCharacter(id));
-    };
-    getData();
-    setIsLoading(false);
-  }, [id]);
+export const Modal = ({ closeModal }: ModalProps) => {
+  const status = useSelector((state: RootState) => state.character.status);
+  const card = useSelector(getCharacterState);
 
   function selectColor(status: string) {
     switch (status.toLowerCase()) {
@@ -36,7 +27,7 @@ export const Modal = ({ id, closeModal }: ModalProps) => {
     <div>
       <div className="overlay" onClick={closeModal}></div>
       <div className="popup">
-        {isLoading ? (
+        {status === 'pending' ? (
           <Loader />
         ) : card ? (
           <div className="popup-card">

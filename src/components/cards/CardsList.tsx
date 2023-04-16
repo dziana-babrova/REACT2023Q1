@@ -1,8 +1,5 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from 'store/Store';
-import { getCharactersState, fetchCharacters } from 'reducers/CharactersReducer';
-import { getSearchValue } from 'reducers/SearchReducer';
+import { useSelector } from 'react-redux';
+import { getCharactersState } from 'reducers/CharactersReducer';
 import { Card } from './Card';
 import './cards.scss';
 
@@ -11,16 +8,7 @@ type CardsListProps = {
 };
 
 const CardsList = ({ openModal }: CardsListProps) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const searchValue = useSelector(getSearchValue);
   const cards = useSelector(getCharactersState);
-  const status = useSelector((state: RootState) => state.characters.status);
-
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchCharacters(searchValue));
-    }
-  }, [status, dispatch, searchValue]);
 
   return (
     <ul className="cards-list">

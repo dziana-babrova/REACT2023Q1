@@ -13,6 +13,9 @@ export const searchSlice = createSlice({
   },
 });
 
-export const getSearchValue = (state: RootState) => state.search.value;
+export const getSearchValue = (state: RootState) => {
+  console.log(state.search.value);
+  return state.search.value;
+};
 
 export const { change } = searchSlice.actions;

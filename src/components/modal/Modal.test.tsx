@@ -1,11 +1,14 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
+import { Provider } from 'react-redux';
+import { store } from 'store/Store';
 import { Modal } from 'components/modal/Modal';
+import { fetchCharacter } from 'reducers/CharacterSlice';
 
 describe('Modal', () => {
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
   it('contains appropriate elements for alive character', async () => {
@@ -39,11 +42,16 @@ describe('Modal', () => {
       })
     ) as Mock;
     const props = {
-      id: 1,
       closeModal: vi.fn(),
     };
 
-    render(<Modal {...props}></Modal>);
+    store.dispatch(fetchCharacter(0));
+
+    render(
+      <Provider store={store}>
+        <Modal {...props}></Modal>
+      </Provider>
+    );
     expect(await screen.findByAltText(character.name)).toBeInTheDocument();
     expect(screen.getByText(character.name)).toBeInTheDocument();
     expect(screen.getByText(character.status)).toBeInTheDocument();
@@ -56,11 +64,16 @@ describe('Modal', () => {
   it('is rendered without content if fetch error occurs', async () => {
     global.fetch = vi.fn(() => Promise.reject('error')) as Mock;
     const props = {
-      id: 1,
       closeModal: vi.fn(),
     };
 
-    render(<Modal {...props}></Modal>);
+    store.dispatch(fetchCharacter(-1));
+
+    render(
+      <Provider store={store}>
+        <Modal {...props}></Modal>{' '}
+      </Provider>
+    );
     expect(await screen.findByText('An error occurred. Try again later')).toBeInTheDocument();
   });
 });

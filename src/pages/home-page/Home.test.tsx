@@ -8,6 +8,7 @@ import { HomePage } from 'pages/home-page/Home';
 describe('Home page', () => {
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
   it('is rendered', async () => {
@@ -99,6 +100,7 @@ describe('Home page', () => {
     );
     expect(screen.getByRole('search')).toBeInTheDocument();
     expect(await screen.findByRole('list')).toBeInTheDocument();
+    expect(await screen.findAllByRole('listitem')).toHaveLength(3);
   });
 
   it('is rendered without content if fetch error occurs', async () => {

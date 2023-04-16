@@ -1,7 +1,9 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
+import { Provider } from 'react-redux';
+import { store } from 'store/Store';
 import { EventCards } from 'components/event-card/EventCards';
+import { createEvent } from 'reducers/EventsReducer';
 
 describe('Event list', () => {
   afterEach(() => {
@@ -43,7 +45,16 @@ describe('Event list', () => {
         },
       ],
     };
-    render(<EventCards {...items}></EventCards>);
+
+    store.dispatch(createEvent(items.cards[0]));
+    store.dispatch(createEvent(items.cards[1]));
+    store.dispatch(createEvent(items.cards[2]));
+
+    render(
+      <Provider store={store}>
+        <EventCards></EventCards>
+      </Provider>
+    );
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getAllByRole('listitem').length).toEqual(items.cards.length);
   });

@@ -1,6 +1,7 @@
-import { describe, it, vi } from 'vitest';
+import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
+import { Provider } from 'react-redux';
+import { store } from 'store/Store';
 import { Search } from 'components/search/Search';
 
 describe('Search box', () => {
@@ -9,13 +10,11 @@ describe('Search box', () => {
   });
 
   it('is rendered', () => {
-    const searchProps = {
-      searchValue: 'test',
-      setSearchValue: vi.fn(),
-      onSubmit: vi.fn(),
-    };
-
-    render(<Search {...searchProps}></Search>);
+    render(
+      <Provider store={store}>
+        <Search></Search>
+      </Provider>
+    );
     expect(screen.getByRole<HTMLInputElement>('search')).toBeInTheDocument();
   });
 });

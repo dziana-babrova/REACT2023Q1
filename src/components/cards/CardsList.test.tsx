@@ -3,10 +3,12 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from 'store/Store';
 import { CardsList } from 'components/cards/CardsList';
+import { fetchCharacters } from 'reducers/CharactersReducer';
 
 describe('Cards list', () => {
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
   it('contains the correct number of elements', async () => {
@@ -58,17 +60,28 @@ describe('Cards list', () => {
     ];
     global.fetch = vi.fn(() =>
       Promise.resolve({
-        json: () => Promise.resolve(cards),
+        json: () =>
+          Promise.resolve({
+            info: {
+              count: 826,
+              pages: 42,
+              next: 'https://rickandmortyapi.com/api/character/?page=2',
+              prev: null,
+            },
+            results: cards,
+          }),
       })
     ) as Mock;
+
+    store.dispatch(fetchCharacters(''));
 
     render(
       <Provider store={store}>
         <CardsList {...{ openModal }}></CardsList>
       </Provider>
     );
-    expect(screen.getByRole('list')).toBeInTheDocument();
-    const elements = expect(await screen.findAllByRole('listitem'));
-    elements.toHaveLength(cards.length);
+    expect(await screen.findByRole('list')).toBeInTheDocument();
+    const elements = await screen.findAllByRole('listitem');
+    expect(elements).toHaveLength(cards.length);
   });
 });

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { CardProps } from 'components/cards/Card';
 import { getCharacters } from 'services/ApiService';
-import { RootState } from 'store/Store';
+import { RootState } from 'state/store/Store';
 
 export type CharactersGetRequestProps = {
   status: 'idle' | 'pending' | 'completed' | 'failed';

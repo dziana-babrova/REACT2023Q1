@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'store/Store';
+import { store } from 'state/store/Store';
 import { Search } from 'components/search/Search';
 
 describe('Search box', () => {

@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { characterSlice } from 'reducers/CharacterSlice';
-import { charactersSlice } from 'reducers/CharactersReducer';
-import { eventSlice } from 'reducers/EventsReducer';
-import { searchSlice } from 'reducers/SearchReducer';
+import { characterSlice } from 'state/reducers/CharacterSlice';
+import { charactersSlice } from 'state/reducers/CharactersReducer';
+import { eventSlice } from 'state/reducers/EventsReducer';
+import { searchSlice } from 'state/reducers/SearchReducer';
 
 const store = configureStore({
   reducer: {

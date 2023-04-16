@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getCharactersState } from 'reducers/CharactersReducer';
+import { getCharactersState } from 'state/reducers/CharactersReducer';
 import { Card } from './Card';
 import './cards.scss';
 

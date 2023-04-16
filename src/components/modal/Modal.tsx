@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Loader } from 'components/loader/Loader';
 import './modal.scss';
-import { RootState } from 'store/Store';
-import { getCharacterState } from 'reducers/CharacterSlice';
+import { RootState } from 'state/store/Store';
+import { getCharacterState } from 'state/reducers/CharacterSlice';
 
 type ModalProps = {
   closeModal: () => void;

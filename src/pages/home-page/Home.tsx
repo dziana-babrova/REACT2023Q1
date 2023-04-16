@@ -4,8 +4,8 @@ import { CardsList } from 'components/cards/CardsList';
 import { Search } from 'components/search/Search';
 import { Loader } from 'components/loader/Loader';
 import { Modal } from 'components/modal/Modal';
-import { AppDispatch, RootState } from 'store/Store';
-import { fetchCharacter, resetStatus } from 'reducers/CharacterSlice';
+import { AppDispatch, RootState } from 'state/store/Store';
+import { fetchCharacter, resetStatus } from 'state/reducers/CharacterSlice';
 import './home.scss';
 
 const HomePage = () => {

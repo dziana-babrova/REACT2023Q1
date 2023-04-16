@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Card } from 'components/form/Form';
-import { RootState } from 'store/Store';
+import { RootState } from 'state/store/Store';
 
 const initialState: Card[] = [];
 

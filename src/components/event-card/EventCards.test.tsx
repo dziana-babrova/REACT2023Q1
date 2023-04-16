@@ -1,9 +1,9 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'store/Store';
+import { store } from 'state/store/Store';
 import { EventCards } from 'components/event-card/EventCards';
-import { createEvent } from 'reducers/EventsReducer';
+import { createEvent } from 'state/reducers/EventsReducer';
 
 describe('Event list', () => {
   afterEach(() => {

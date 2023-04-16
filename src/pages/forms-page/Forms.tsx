@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createEvent } from 'reducers/EventsReducer';
+import { createEvent } from 'state/reducers/EventsReducer';
 import { Confirmation } from 'components/confirmation/Confirmation';
 import { EventCards } from 'components/event-card/EventCards';
 import { Form, Card } from 'components/form/Form';

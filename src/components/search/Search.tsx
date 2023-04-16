@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch } from 'store/Store';
-import { fetchCharacters } from 'reducers/CharactersReducer';
-import { getSearchValue, change } from 'reducers/SearchReducer';
+import { AppDispatch } from 'state/store/Store';
+import { fetchCharacters } from 'state/reducers/CharactersReducer';
+import { getSearchValue, change } from 'state/reducers/SearchReducer';
 
 import './search.scss';
 

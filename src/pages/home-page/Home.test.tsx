@@ -1,7 +1,7 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'store/Store';
+import { store } from 'state/store/Store';
 
 import { HomePage } from 'pages/home-page/Home';
 

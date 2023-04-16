@@ -1,6 +1,7 @@
-import { describe, it, vi } from 'vitest';
+import { describe, it, vi, Mock } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
+import { Provider } from 'react-redux';
+import { store } from 'store/Store';
 import { CardsList } from 'components/cards/CardsList';
 
 describe('Cards list', () => {
@@ -8,7 +9,7 @@ describe('Cards list', () => {
     cleanup();
   });
 
-  it('contains the correct number of elements', () => {
+  it('contains the correct number of elements', async () => {
     const openModal = vi.fn();
     const cards = [
       {
@@ -55,9 +56,19 @@ describe('Cards list', () => {
         created: '2017-11-04T22:25:29.008Z',
       },
     ];
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(cards),
+      })
+    ) as Mock;
 
-    render(<CardsList {...{ cards, openModal }}></CardsList>);
+    render(
+      <Provider store={store}>
+        <CardsList {...{ openModal }}></CardsList>
+      </Provider>
+    );
     expect(screen.getByRole('list')).toBeInTheDocument();
-    expect(screen.getAllByRole('listitem').length).toEqual(cards.length);
+    const elements = expect(await screen.findAllByRole('listitem'));
+    elements.toHaveLength(cards.length);
   });
 });

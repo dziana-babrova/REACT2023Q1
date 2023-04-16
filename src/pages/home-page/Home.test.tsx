@@ -1,5 +1,7 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from 'store/Store';
 
 import { HomePage } from 'pages/home-page/Home';
 
@@ -90,7 +92,11 @@ describe('Home page', () => {
           }),
       })
     ) as Mock;
-    render(<HomePage></HomePage>);
+    render(
+      <Provider store={store}>
+        <HomePage></HomePage>
+      </Provider>
+    );
     expect(screen.getByRole('search')).toBeInTheDocument();
     expect(await screen.findByRole('list')).toBeInTheDocument();
   });
@@ -98,7 +104,11 @@ describe('Home page', () => {
   it('is rendered without content if fetch error occurs', async () => {
     global.fetch = vi.fn(() => Promise.reject('error')) as Mock;
 
-    render(<HomePage></HomePage>);
+    render(
+      <Provider store={store}>
+        <HomePage></HomePage>
+      </Provider>
+    );
     expect(screen.getByRole('search')).toBeInTheDocument();
     expect(await screen.findByText('No characters found')).toBeInTheDocument();
   });

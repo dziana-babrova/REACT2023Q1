@@ -1,6 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
+import { Provider } from 'react-redux';
+import { store } from 'store/Store';
 import { Form } from 'components/form/Form';
 
 describe('Form', () => {
@@ -10,7 +11,11 @@ describe('Form', () => {
 
   it('is rendered', () => {
     const create = vi.fn();
-    render(<Form create={create}></Form>);
+    render(
+      <Provider store={store}>
+        <Form create={create}></Form>;
+      </Provider>
+    );
     expect(screen.getByText('Give your event a name:')).toBeInTheDocument();
     expect(screen.getByText('Provide the held date:')).toBeInTheDocument();
     expect(screen.getByText('What are you planning to discuss?')).toBeInTheDocument();

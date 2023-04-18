@@ -4,14 +4,14 @@ import { getCharacters } from 'services/ApiService';
 import { RootState } from 'state/store/Store';
 
 export type CharactersGetRequestProps = {
-  status: 'idle' | 'pending' | 'completed' | 'failed';
+  isLoading: boolean;
   error: string | undefined;
   cards: CardProps[];
 };
 
 const initialState: CharactersGetRequestProps = {
   cards: [],
-  status: 'idle',
+  isLoading: false,
   error: undefined,
 };
 
@@ -24,14 +24,14 @@ export const charactersSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCharacters.pending, (state) => {
-        state.status = 'pending';
+        state.isLoading = true;
       })
       .addCase(fetchCharacters.fulfilled, (state, action) => {
-        state.status = 'completed';
+        state.isLoading = false;
         state.cards = action.payload;
       })
       .addCase(fetchCharacters.rejected, (state, action) => {
-        state.status = 'failed';
+        state.isLoading = false;
         state.error = action.error.message;
       });
   },

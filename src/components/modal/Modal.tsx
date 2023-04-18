@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
 import { Loader } from 'components/loader/Loader';
-import './modal.scss';
 import { RootState } from 'state/store/Store';
 import { getCharacterState } from 'state/reducers/CharacterSlice';
+import './modal.scss';
 
 type ModalProps = {
   closeModal: () => void;
 };
 
 export const Modal = ({ closeModal }: ModalProps) => {
-  const status = useSelector((state: RootState) => state.character.status);
+  const status = useSelector((state: RootState) => state.character.isLoading);
   const card = useSelector(getCharacterState);
 
   function selectColor(status: string) {
@@ -27,7 +27,7 @@ export const Modal = ({ closeModal }: ModalProps) => {
     <div>
       <div className="overlay" onClick={closeModal}></div>
       <div className="popup">
-        {status === 'pending' ? (
+        {status ? (
           <Loader />
         ) : card ? (
           <div className="popup-card">

@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CardsList } from 'components/cards/CardsList';
 import { Search } from 'components/search/Search';
 import { Loader } from 'components/loader/Loader';
 import { Modal } from 'components/modal/Modal';
 import { AppDispatch, RootState } from 'state/store/Store';
-import { fetchCharacter, resetStatus } from 'state/reducers/CharacterSlice';
+import { fetchCharacter, resetCard } from 'state/reducers/CharacterSlice';
 import './home.scss';
+import { getSearchValue } from 'state/reducers/SearchReducer';
+import { fetchCharacters } from 'state/reducers/CharactersReducer';
 
 const HomePage = () => {
-  const status = useSelector((state: RootState) => state.characters.status);
+  const status = useSelector((state: RootState) => state.characters.isLoading);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [cardNumber, setCardNumber] = useState<number | null>(null);
   const dispatch = useDispatch<AppDispatch>();
+  const search = useSelector(getSearchValue);
+
+  useEffect(() => {
+    dispatch(fetchCharacters(search));
+  }, [dispatch, search]);
 
   const openModal = (id: number) => {
     setIsModalOpen(true);
@@ -22,14 +29,14 @@ const HomePage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setCardNumber(null);
-    dispatch(resetStatus('idle'));
+    // setCardNumber(null);
+    dispatch(resetCard());
   };
 
   return (
     <main className="wrapper">
       <Search />
-      {status === 'pending' ? <Loader /> : <CardsList {...{ openModal }}></CardsList>}
+      {status ? <Loader /> : <CardsList {...{ openModal }}></CardsList>}
       {isModalOpen && cardNumber && <Modal {...{ closeModal }} />}
     </main>
   );

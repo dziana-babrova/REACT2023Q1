@@ -1,19 +1,17 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { CardProps } from 'components/cards/Card';
 import { getCharacter } from 'services/ApiService';
 import { RootState } from 'state/store/Store';
 
-type StatusType = 'idle' | 'pending' | 'completed' | 'failed';
-
 export type CharacterGetRequestProps = {
-  status: StatusType;
+  isLoading: boolean;
   error: string | undefined;
   card: CardProps | undefined;
 };
 
 const initialState: CharacterGetRequestProps = {
   card: undefined,
-  status: 'idle',
+  isLoading: false,
   error: undefined,
 };
 
@@ -23,21 +21,21 @@ export const characterSlice = createSlice({
   name: 'character',
   initialState,
   reducers: {
-    resetStatus: (state, actions: PayloadAction<StatusType>) => {
-      state.status = actions.payload;
+    resetCard: (state) => {
+      state.card = undefined;
     },
   },
   extraReducers(builder) {
     builder
       .addCase(fetchCharacter.pending, (state) => {
-        state.status = 'pending';
+        state.isLoading = true;
       })
       .addCase(fetchCharacter.fulfilled, (state, action) => {
-        state.status = 'completed';
+        state.isLoading = false;
         state.card = action.payload;
       })
       .addCase(fetchCharacter.rejected, (state, action) => {
-        state.status = 'failed';
+        state.isLoading = false;
         state.error = action.error.message;
       });
   },
@@ -45,4 +43,4 @@ export const characterSlice = createSlice({
 
 export const getCharacterState = (state: RootState) => state.character.card;
 
-export const { resetStatus } = characterSlice.actions;
+export const { resetCard } = characterSlice.actions;

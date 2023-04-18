@@ -14,7 +14,6 @@ export const searchSlice = createSlice({
 });
 
 export const getSearchValue = (state: RootState) => {
-  console.log(state.search.value);
   return state.search.value;
 };
 

@@ -29,7 +29,7 @@ const HomePage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    // setCardNumber(null);
+    setCardNumber(null);
     dispatch(resetCard());
   };
 

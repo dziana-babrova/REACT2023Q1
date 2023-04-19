@@ -16,9 +16,16 @@
     "paths": {
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
-      "pages/*": ["pages/*"],
+      "pages/*": ["pages/*"]
     },
     "resolveJsonModule": true
   },
-  "include": ["./src/**/*", "styled.d.ts"]
+  "ts-node": {
+    "esm": true,
+    // "esModuleInterop": true,
+    "transpileOnly": true,
+    "experimentalSpecifierResolution": "node",
+  },
+
+  "include": ["./src/**/*", "styled.d.ts", "server.ts"]
 }

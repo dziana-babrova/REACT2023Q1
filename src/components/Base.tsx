@@ -3,10 +3,10 @@ import { Header } from './header/Header';
 
 const Base = () => {
   return (
-    <div>
+    <>
       <Header />
       <Outlet />
-    </div>
+    </>
   );
 };
 

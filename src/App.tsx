@@ -4,6 +4,7 @@ import { AboutPage } from './pages/about-page/About';
 import { HomePage } from './pages/home-page/Home';
 import { NotFoundPage } from './pages/not-found-page/NotFound';
 import { FormsPage } from './pages/forms-page/Forms';
+import './index.scss';
 
 function App() {
   return (

@@ -2,43 +2,51 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
-import { createServer } from 'vite';
-import { PipeableStream, RenderToPipeableStreamOptions } from 'react-dom/server';
+import { createServer as createViteServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PORT = process.env.PORT || 3001;
-const html = fs.readFileSync(path.resolve(__dirname, './index.html')).toString();
-const parts = html.split('not rendered');
 
-const vite = await createServer({
-  server: { middlewareMode: true },
-  appType: 'custom',
-});
+async function createServer() {
+  const app = express();
 
-const app = express();
-
-// app.use(vite.middlewares);
-
-// app.use('/assets', express.static(path.resolve(__dirname, './dist/client/assets')));
-app.use(async (req, res) => {
-  const url = req.url;
-  res.write(parts[0]);
-
-  const { render } = await vite.ssrLoadModule('./src/ServerApp.tsx');
-  const stream = await render(url, {
-    onShellReady() {
-      stream.pipe(res);
-    },
-    onShellError() {},
-    onAllReady() {
-      res.write(parts[1]);
-      res.status(200).set({ 'Content-Type': 'text/html' }).end();
-    },
-    onError(err: unknown) {
-      console.error(err);
-    },
+  const vite = await createViteServer({
+    server: { middlewareMode: true },
+    appType: 'custom',
   });
-});
 
-console.log(`listening on http://localhost:${PORT}`);
-app.listen(PORT);
+  app.use(vite.middlewares);
+
+  app.use('*', async (req, res, next) => {
+    const url = req.originalUrl;
+
+    try {
+      let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
+      template = await vite.transformIndexHtml(url, template);
+      const parts = template.split('<!--ssr-outlet-->');
+      const { render } = await vite.ssrLoadModule('/src/ServerApp.tsx');
+
+      const appHtml = await render(url, {
+        onShellReady() {
+          res.write(parts[0]);
+          appHtml.pipe(res);
+        },
+        onAllReady() {
+          res.write(parts[1]);
+          res.end();
+        },
+        onError(e: Error) {
+          console.error(e);
+        },
+      });
+    } catch (e: unknown) {
+      vite.ssrFixStacktrace(e as Error);
+      next(e);
+    }
+  });
+
+  app.listen(3001, () => {
+    'listening on http://localhost:3001';
+  });
+}
+
+createServer();

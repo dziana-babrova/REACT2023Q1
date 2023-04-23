@@ -5,7 +5,7 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import { configure } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
-import { charactersSlice } from 'state/reducers/CharactersReducer';
+import { charactersSlice } from 'state/reducers/charactersReducer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -27,10 +27,10 @@ async function createServer() {
       template = await vite.transformIndexHtml(url, template);
       const parts = template.split('<!--ssr-outlet-->');
       const { render, dispatchCharacters } = await vite.ssrLoadModule('/src/ServerApp.tsx');
-      await dispatchCharacters();
+      // await dispatchCharacters();
 
       const appHtml = await render(url, {
-        bootstrapScripts: ['/main.js'],
+        // bootstrapScripts: ['/main.js'],
         onShellReady() {
           res.write(parts[0]);
           appHtml.pipe(res);

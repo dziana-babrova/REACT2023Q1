@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch } from 'state/store/Store';
-import { getSearchValue, change } from 'state/reducers/SearchReducer';
+import { AppDispatch } from 'state/store/store';
+import { getSearchValue, change } from 'state/reducers/searchReducer';
 
 import './search.scss';
 

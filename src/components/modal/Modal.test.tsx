@@ -1,9 +1,9 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/Store';
+import { store } from 'state/store/store';
 import { Modal } from 'components/modal/Modal';
-import { fetchCharacter } from 'state/reducers/CharacterSlice';
+import { fetchCharacter } from 'state/reducers/characterReducer';
 
 describe('Modal', () => {
   afterEach(() => {

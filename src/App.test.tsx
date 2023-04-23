@@ -2,7 +2,7 @@ import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/Store';
+import { store } from 'state/store/store';
 import App from './App';
 
 describe('App', () => {

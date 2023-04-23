@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/Store';
+import { store } from 'state/store/store';
 import { EventCard } from 'components/event-card/EventCard';
 
 describe('Card', () => {

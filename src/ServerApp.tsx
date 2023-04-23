@@ -8,9 +8,9 @@ import App from './App';
 import { Location } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AnyAction, ThunkMiddleware, configureStore, createStore } from '@reduxjs/toolkit';
-import { charactersSlice, CharactersGetRequestProps, fetchCharacters } from 'state/reducers/CharactersReducer';
+import { charactersSlice, CharactersGetRequestProps, fetchCharacters } from 'state/reducers/charactersReducer';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
-import { store } from 'state/store/Store';
+import { store } from 'state/store/store';
 
 export type RenderFunc = (
   url: string | Partial<Location>,

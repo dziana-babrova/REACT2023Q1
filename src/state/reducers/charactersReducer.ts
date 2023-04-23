@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { CardProps } from 'components/cards/Card';
 import { getCharacters } from 'services/ApiService';
-import { RootState } from 'state/store/Store';
+import { RootState } from 'state/store/store';
 
 export type CharactersGetRequestProps = {
   isLoading: boolean;

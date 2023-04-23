@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getEvents } from 'state/reducers/EventsReducer';
+import { getEvents } from 'state/reducers/eventsReducer';
 import { EventCard } from './EventCard';
 
 const EventCards = () => {

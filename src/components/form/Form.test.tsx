@@ -1,7 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/Store';
+import { store } from 'state/store/store';
 import { Form } from 'components/form/Form';
 
 describe('Form', () => {

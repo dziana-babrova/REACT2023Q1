@@ -4,11 +4,11 @@ import { CardsList } from 'components/cards/CardsList';
 import { Search } from 'components/search/Search';
 import { Loader } from 'components/loader/Loader';
 import { Modal } from 'components/modal/Modal';
-import { AppDispatch, RootState } from 'state/store/Store';
-import { fetchCharacter, resetCard } from 'state/reducers/CharacterSlice';
+import { AppDispatch, RootState } from 'state/store/store';
+import { fetchCharacter, resetCard } from 'state/reducers/characterReducer';
 import './home.scss';
-import { getSearchValue } from 'state/reducers/SearchReducer';
-import { fetchCharacters } from 'state/reducers/CharactersReducer';
+import { getSearchValue } from 'state/reducers/searchReducer';
+import { fetchCharacters } from 'state/reducers/charactersReducer';
 
 const HomePage = () => {
   const status = useSelector((state: RootState) => state.characters.isLoading);

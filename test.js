@@ -2,7 +2,7 @@ import path from 'path';
 import Express from 'express';
 import React from 'react';
 import { createStore } from 'redux';
-import { charactersSlice } from 'state/reducers/CharactersReducer';
+import { charactersSlice } from 'state/reducers/charactersReducer';
 import { render } from './tRender';
 
 const app = Express();

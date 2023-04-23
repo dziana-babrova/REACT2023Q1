@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Loader } from 'components/loader/Loader';
-import { RootState } from 'state/store/Store';
-import { getCharacterState } from 'state/reducers/CharacterSlice';
+import { RootState } from 'state/store/store';
+import { getCharacterState } from 'state/reducers/characterReducer';
 import './modal.scss';
 
 type ModalProps = {

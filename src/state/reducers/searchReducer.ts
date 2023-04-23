@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'state/store/Store';
+import { RootState } from 'state/store/store';
 
 export const searchSlice = createSlice({
   name: 'searchValue',

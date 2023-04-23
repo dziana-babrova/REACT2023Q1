@@ -1,16 +1,14 @@
-import { useSelector } from 'react-redux';
 import { Loader } from 'components/loader/Loader';
-import { RootState } from 'state/store/Store';
-import { getCharacterState } from 'state/reducers/CharacterSlice';
 import './modal.scss';
+import { useGetCharacterQuery } from 'state/reducers/apiSlice';
 
 type ModalProps = {
   closeModal: () => void;
+  cardNumber: number;
 };
 
-export const Modal = ({ closeModal }: ModalProps) => {
-  const status = useSelector((state: RootState) => state.character.isLoading);
-  const card = useSelector(getCharacterState);
+export const Modal = ({ closeModal, cardNumber }: ModalProps) => {
+  const { data: card, isFetching } = useGetCharacterQuery(cardNumber);
 
   function selectColor(status: string) {
     switch (status.toLowerCase()) {
@@ -27,7 +25,7 @@ export const Modal = ({ closeModal }: ModalProps) => {
     <div>
       <div className="overlay" onClick={closeModal}></div>
       <div className="popup">
-        {status ? (
+        {isFetching ? (
           <Loader />
         ) : card ? (
           <div className="popup-card">

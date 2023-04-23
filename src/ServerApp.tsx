@@ -1,41 +1,33 @@
-import {
-  PipeableStream,
-  RenderToPipeableStreamOptions,
-  renderToPipeableStream,
-} from 'react-dom/server';
+import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
-import { Location } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { AnyAction, ThunkMiddleware, configureStore, createStore } from '@reduxjs/toolkit';
-import { charactersSlice, CharactersGetRequestProps, fetchCharacters } from 'state/reducers/charactersReducer';
-import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
-import { store } from 'state/store/store';
+import { Request, Response } from 'express';
+import { Html } from 'components/Html';
+import { setupStore } from 'state/store/store';
+import { fetchCharacters } from 'state/reducers/charactersReducer';
 
-export type RenderFunc = (
-  url: string | Partial<Location>,
-  opts: RenderToPipeableStreamOptions | undefined,
-  store: ToolkitStore<
-    CharactersGetRequestProps,
-    AnyAction,
-    [ThunkMiddleware<CharactersGetRequestProps, AnyAction>]
-  >
-) => PipeableStream;
-
-// const store = configureStore(charactersSlice);
-
-export async function dispatchCharacters() {
+export async function render(req: Request, res: Response) {
+  const store = setupStore({});
   await store.dispatch(fetchCharacters(''));
-}
+  const state = store.getState();
 
-export const render: RenderFunc = (url, opts) => {
-  const stream = renderToPipeableStream(
-    <Provider store={store}>
-      <StaticRouter location={url}>
-        <App />
-      </StaticRouter>
-    </Provider>,
-    opts
+  const html = renderToPipeableStream(
+    <Html preloadedState={state}>
+      <Provider store={store}>
+        <StaticRouter location={req.originalUrl}>
+          <App />
+        </StaticRouter>
+      </Provider>
+    </Html>,
+    {
+      onShellReady() {
+        res.setHeader('content-type', 'text/html');
+        html.pipe(res);
+      },
+      onError(e: unknown) {
+        console.error(e);
+      },
+    }
   );
-  return stream;
-};
+}

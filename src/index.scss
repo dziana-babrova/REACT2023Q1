@@ -4,6 +4,28 @@
   background-color: gainsboro;
   min-height: 100vh;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: stretch;
+
+  header,
+  footer {
+    flex: 0 0 100%;
+  }
+
+  main {
+  flex: 1 0 100%;
+    align-self: stretch;
+    min-height: 100%;
+  }
+
+  header {
+    justify-self: flex-start;
+  }
+  footer {
+    justify-self: flex-end;
+  }
 }
 
 .popup-opened {

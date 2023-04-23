@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import { Search } from 'components/search/Search';
 
 describe('Search box', () => {
@@ -11,7 +11,7 @@ describe('Search box', () => {
 
   it('is rendered', () => {
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <Search></Search>
       </Provider>
     );

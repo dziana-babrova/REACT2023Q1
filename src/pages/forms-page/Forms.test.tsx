@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import { cleanup, render, screen } from '@testing-library/react';
 import { FormsPage } from 'pages/forms-page/Forms';
 
@@ -11,7 +11,7 @@ describe('Form page', () => {
 
   it('is rendered', () => {
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <FormsPage></FormsPage>
       </Provider>
     );

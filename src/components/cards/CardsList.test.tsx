@@ -1,7 +1,7 @@
 import { describe, it, vi, Mock } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import { CardsList } from 'components/cards/CardsList';
 import { fetchCharacters } from 'state/reducers/charactersReducer';
 
@@ -73,6 +73,7 @@ describe('Cards list', () => {
       })
     ) as Mock;
 
+    const store = setupStore({});
     store.dispatch(fetchCharacters(''));
 
     render(

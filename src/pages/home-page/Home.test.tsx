@@ -1,7 +1,7 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 
 import { HomePage } from 'pages/home-page/Home';
 
@@ -94,7 +94,7 @@ describe('Home page', () => {
       })
     ) as Mock;
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <HomePage></HomePage>
       </Provider>
     );
@@ -107,7 +107,7 @@ describe('Home page', () => {
     global.fetch = vi.fn(() => Promise.reject('error')) as Mock;
 
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <HomePage></HomePage>
       </Provider>
     );

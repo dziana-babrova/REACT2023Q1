@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import { EventCards } from 'components/event-card/EventCards';
 import { createEvent } from 'state/reducers/eventsReducer';
 
@@ -46,6 +46,7 @@ describe('Event list', () => {
       ],
     };
 
+    const store = setupStore({});
     store.dispatch(createEvent(items.cards[0]));
     store.dispatch(createEvent(items.cards[1]));
     store.dispatch(createEvent(items.cards[2]));

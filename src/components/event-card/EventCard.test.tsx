@@ -1,8 +1,9 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import { EventCard } from 'components/event-card/EventCard';
+import { createEvent } from 'state/reducers/eventsReducer';
 
 describe('Card', () => {
   afterEach(() => {
@@ -20,6 +21,10 @@ describe('Card', () => {
         'https://rolling-scopes-school.github.io/dziana-babrova-JSFE2022Q3/online-zoo/assets/GiantPanda.png',
       theme: ['character', 'season'],
     };
+
+    const store = setupStore({});
+    store.dispatch(createEvent(card));
+
     render(
       <Provider store={store}>
         <EventCard {...card}></EventCard>{' '}

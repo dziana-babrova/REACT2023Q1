@@ -1,7 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import { Form } from 'components/form/Form';
 
 describe('Form', () => {
@@ -12,7 +12,7 @@ describe('Form', () => {
   it('is rendered', () => {
     const create = vi.fn();
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <Form create={create}></Form>;
       </Provider>
     );

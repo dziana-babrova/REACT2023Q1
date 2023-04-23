@@ -2,7 +2,7 @@ import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import App from './App';
 
 describe('App', () => {
@@ -12,7 +12,7 @@ describe('App', () => {
 
   it('displays Home page name in the header', () => {
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <MemoryRouter initialEntries={['/']}>
           <App />
         </MemoryRouter>
@@ -27,7 +27,7 @@ describe('App', () => {
 
   it('displays About page name in the header', () => {
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <MemoryRouter initialEntries={['/about']}>
           <App />
         </MemoryRouter>
@@ -42,7 +42,7 @@ describe('App', () => {
 
   it('displays Forms page name in the header', () => {
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <MemoryRouter initialEntries={['/forms']}>
           <App />
         </MemoryRouter>
@@ -57,7 +57,7 @@ describe('App', () => {
 
   it('displays 404 page name in the header if rendered path is invalid', () => {
     render(
-      <Provider store={store}>
+      <Provider store={setupStore({})}>
         <MemoryRouter initialEntries={['/non-existing-route']}>
           <App />
         </MemoryRouter>

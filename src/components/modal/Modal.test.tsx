@@ -1,7 +1,7 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from 'state/store/store';
+import { setupStore } from 'state/store/store';
 import { Modal } from 'components/modal/Modal';
 import { fetchCharacter } from 'state/reducers/characterReducer';
 
@@ -45,6 +45,7 @@ describe('Modal', () => {
       closeModal: vi.fn(),
     };
 
+    const store = setupStore({});
     store.dispatch(fetchCharacter(0));
 
     render(
@@ -67,7 +68,7 @@ describe('Modal', () => {
       closeModal: vi.fn(),
     };
 
-    store.dispatch(fetchCharacter(-1));
+    const store = setupStore({});
 
     render(
       <Provider store={store}>

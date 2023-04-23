@@ -1,15 +1,12 @@
-import { useSelector } from 'react-redux';
-import { getCharactersState } from 'state/reducers/CharactersReducer';
-import { Card } from './Card';
+import { Card, CardProps } from './Card';
 import './cards.scss';
 
 type CardsListProps = {
   openModal: (id: number) => void;
+  cards: CardProps[] | undefined;
 };
 
-const CardsList = ({ openModal }: CardsListProps) => {
-  const cards = useSelector(getCharactersState);
-
+const CardsList = ({ openModal, cards }: CardsListProps) => {
   return (
     <ul className="cards-list">
       {cards && cards.length > 0 ? (

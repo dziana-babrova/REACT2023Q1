@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch } from 'state/store/Store';
 import { getSearchValue, change } from 'state/reducers/SearchReducer';
@@ -9,7 +9,10 @@ const Search = () => {
   const search = useSelector(getSearchValue);
   const searchRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch<AppDispatch>();
-  if (searchRef.current) searchRef.current.value = search;
+
+  useEffect(() => {
+    if (searchRef.current) searchRef.current.value = search;
+  }, [search]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();

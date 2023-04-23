@@ -1,16 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { characterSlice } from 'state/reducers/CharacterSlice';
-import { charactersSlice } from 'state/reducers/CharactersReducer';
 import { eventSlice } from 'state/reducers/EventsReducer';
 import { searchSlice } from 'state/reducers/SearchReducer';
+import { apiSlice } from 'state/reducers/apiSlice';
 
 const store = configureStore({
   reducer: {
     search: searchSlice.reducer,
     events: eventSlice.reducer,
-    characters: charactersSlice.reducer,
     character: characterSlice.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 export { store };

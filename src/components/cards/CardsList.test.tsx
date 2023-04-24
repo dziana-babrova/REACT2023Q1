@@ -1,9 +1,8 @@
-import { describe, it, vi, Mock } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from 'state/store/Store';
 import { CardsList } from 'components/cards/CardsList';
-import { fetchCharacters } from 'state/reducers/CharactersReducer';
 
 describe('Cards list', () => {
   afterEach(() => {
@@ -58,26 +57,10 @@ describe('Cards list', () => {
         created: '2017-11-04T22:25:29.008Z',
       },
     ];
-    global.fetch = vi.fn(() =>
-      Promise.resolve({
-        json: () =>
-          Promise.resolve({
-            info: {
-              count: 826,
-              pages: 42,
-              next: 'https://rickandmortyapi.com/api/character/?page=2',
-              prev: null,
-            },
-            results: cards,
-          }),
-      })
-    ) as Mock;
-
-    store.dispatch(fetchCharacters(''));
 
     render(
       <Provider store={store}>
-        <CardsList {...{ openModal }}></CardsList>
+        <CardsList {...{ openModal, cards }}></CardsList>
       </Provider>
     );
     expect(await screen.findByRole('list')).toBeInTheDocument();

@@ -1,9 +1,9 @@
-import { Mock, describe, it, vi } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from 'state/store/Store';
 import { Modal } from 'components/modal/Modal';
-import { fetchCharacter } from 'state/reducers/CharacterSlice';
+import data from 'mocks/mockData.json';
 
 describe('Modal', () => {
   afterEach(() => {
@@ -12,40 +12,12 @@ describe('Modal', () => {
   });
 
   it('contains appropriate elements for alive character', async () => {
-    const character = {
-      id: 1,
-      name: 'Rick Sanchez',
-      status: 'Alive',
-      species: 'Human',
-      type: 'test type',
-      gender: 'Male',
-      origin: {
-        name: 'Earth',
-        url: 'https://rickandmortyapi.com/api/location/1',
-      },
-      location: {
-        name: 'Earth',
-        url: 'https://rickandmortyapi.com/api/location/20',
-      },
-      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-      episode: [
-        'https://rickandmortyapi.com/api/episode/1',
-        'https://rickandmortyapi.com/api/episode/2',
-      ],
-      url: 'https://rickandmortyapi.com/api/character/1',
-      created: '2017-11-04T18:48:46.250Z',
-    };
+    const character = data.results[6];
 
-    global.fetch = vi.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(character),
-      })
-    ) as Mock;
     const props = {
       closeModal: vi.fn(),
+      cardNumber: 7,
     };
-
-    store.dispatch(fetchCharacter(0));
 
     render(
       <Provider store={store}>
@@ -62,12 +34,10 @@ describe('Modal', () => {
   });
 
   it('is rendered without content if fetch error occurs', async () => {
-    global.fetch = vi.fn(() => Promise.reject('error')) as Mock;
     const props = {
       closeModal: vi.fn(),
+      cardNumber: 0,
     };
-
-    store.dispatch(fetchCharacter(-1));
 
     render(
       <Provider store={store}>

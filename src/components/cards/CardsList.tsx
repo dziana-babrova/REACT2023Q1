@@ -2,11 +2,11 @@ import { Card, CardProps } from './Card';
 import './cards.scss';
 
 type CardsListProps = {
-  cards: CardProps[];
   openModal: (id: number) => void;
+  cards: CardProps[] | undefined;
 };
 
-const CardsList = ({ cards, openModal }: CardsListProps) => {
+const CardsList = ({ openModal, cards }: CardsListProps) => {
   return (
     <ul className="cards-list">
       {cards && cards.length > 0 ? (

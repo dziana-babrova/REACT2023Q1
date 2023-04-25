@@ -17,6 +17,7 @@
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
       "pages/*": ["pages/*"],
+      "mocks/*": ["mocks/*"]
     },
     "resolveJsonModule": true
   },

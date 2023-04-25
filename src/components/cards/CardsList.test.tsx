@@ -1,14 +1,16 @@
 import { describe, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
+import { Provider } from 'react-redux';
+import { store } from 'state/store/Store';
 import { CardsList } from 'components/cards/CardsList';
 
 describe('Cards list', () => {
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
-  it('contains the correct number of elements', () => {
+  it('contains the correct number of elements', async () => {
     const openModal = vi.fn();
     const cards = [
       {
@@ -56,8 +58,13 @@ describe('Cards list', () => {
       },
     ];
 
-    render(<CardsList {...{ cards, openModal }}></CardsList>);
-    expect(screen.getByRole('list')).toBeInTheDocument();
-    expect(screen.getAllByRole('listitem').length).toEqual(cards.length);
+    render(
+      <Provider store={store}>
+        <CardsList {...{ openModal, cards }}></CardsList>
+      </Provider>
+    );
+    expect(await screen.findByRole('list')).toBeInTheDocument();
+    const elements = await screen.findAllByRole('listitem');
+    expect(elements).toHaveLength(cards.length);
   });
 });

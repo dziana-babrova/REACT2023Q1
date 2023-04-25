@@ -1,6 +1,8 @@
 import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from 'state/store/Store';
 import App from './App';
 
 describe('App', () => {
@@ -10,9 +12,11 @@ describe('App', () => {
 
   it('displays Home page name in the header', () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {
@@ -23,9 +27,11 @@ describe('App', () => {
 
   it('displays About page name in the header', () => {
     render(
-      <MemoryRouter initialEntries={['/about']}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/about']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {
@@ -36,9 +42,11 @@ describe('App', () => {
 
   it('displays Forms page name in the header', () => {
     render(
-      <MemoryRouter initialEntries={['/forms']}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/forms']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {
@@ -49,9 +57,11 @@ describe('App', () => {
 
   it('displays 404 page name in the header if rendered path is invalid', () => {
     render(
-      <MemoryRouter initialEntries={['/non-existing-route']}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/non-existing-route']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {

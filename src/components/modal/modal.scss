@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-body:has(#root div div main div.overlay) {
+body:has(#root main div.overlay) {
     overflow: hidden;
     height: 80vh;
     margin: 0 auto;
@@ -38,7 +38,15 @@ body:has(#root div div main div.overlay) {
   @media screen and (max-width: 600px) {
     max-width: 400px;
     height: auto;
-    left: calc(100vw / 2  - 250px);
+    top: 100px;
+    left: calc(100vw / 2  - 200px);
+  }
+
+  @media screen and (max-width: 480px) {
+    max-width: 300px;
+    height: auto;
+    top: 100px;
+    left: calc(100vw / 2  - 150px);
   }
 }
 

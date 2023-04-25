@@ -1,15 +1,13 @@
+import { useSelector } from 'react-redux';
+import { getEvents } from 'state/reducers/EventsReducer';
 import { EventCard } from './EventCard';
-import { Card } from 'components/form/Form';
 
-type EventCardsProps = {
-  cards: Card[];
-};
-
-const EventCards = ({ cards }: EventCardsProps) => {
+const EventCards = () => {
+  const events = useSelector(getEvents);
   return (
     <ul className="events">
-      {cards.map((card) => (
-        <EventCard key={card.name} {...card} />
+      {events.map((event) => (
+        <EventCard key={event.name} {...event} />
       ))}
     </ul>
   );

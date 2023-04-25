@@ -13,6 +13,9 @@ export default defineConfig({
       data: '/src/data',
       consts: '/src/consts',
       services: '/src/services',
+      reducers: '/src/reducers',
+      state: '/src/state',
+      mocks: '/src/mocks',
     },
   },
   test: {

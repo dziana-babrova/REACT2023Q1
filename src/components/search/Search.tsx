@@ -1,32 +1,27 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from 'state/store/Store';
+import { getSearchValue, change } from 'state/reducers/SearchReducer';
 
 import './search.scss';
 
-type SearchProps = {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  onSubmit: () => Promise<void>;
-};
+const Search = () => {
+  const search = useSelector(getSearchValue);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch<AppDispatch>();
 
-const Search = ({ searchValue, setSearchValue, onSubmit }: SearchProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-  };
+  useEffect(() => {
+    if (searchRef.current) searchRef.current.value = search;
+  }, [search]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    onSubmit();
+    if (searchRef.current) dispatch(change(searchRef.current?.value));
   };
 
   return (
     <form role="search" className="search__form" onSubmit={handleSubmit.bind(this)}>
-      <input
-        className="search__field"
-        type="search"
-        name="name"
-        value={searchValue}
-        onChange={handleChange}
-      />
+      <input className="search__field" type="search" name="name" ref={searchRef} />
       <input className="search__button" type="submit" value="search" />
     </form>
   );

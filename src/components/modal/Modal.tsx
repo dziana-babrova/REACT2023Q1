@@ -1,25 +1,14 @@
-import { useState, useEffect } from 'react';
-import { CardProps } from 'components/cards/Card';
-import './modal.scss';
-import { getCharacter } from 'services/ApiService';
 import { Loader } from 'components/loader/Loader';
+import './modal.scss';
+import { useGetCharacterQuery } from 'state/reducers/apiSlice';
 
 type ModalProps = {
-  id: number;
   closeModal: () => void;
+  cardNumber: number;
 };
 
-export const Modal = ({ id, closeModal }: ModalProps) => {
-  const [card, setCard] = useState<CardProps | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const getData = async () => {
-      setCard(await getCharacter(id));
-    };
-    getData();
-    setIsLoading(false);
-  }, [id]);
+export const Modal = ({ closeModal, cardNumber }: ModalProps) => {
+  const { data: card, isFetching } = useGetCharacterQuery(cardNumber);
 
   function selectColor(status: string) {
     switch (status.toLowerCase()) {
@@ -36,7 +25,7 @@ export const Modal = ({ id, closeModal }: ModalProps) => {
     <div>
       <div className="overlay" onClick={closeModal}></div>
       <div className="popup">
-        {isLoading ? (
+        {isFetching ? (
           <Loader />
         ) : card ? (
           <div className="popup-card">

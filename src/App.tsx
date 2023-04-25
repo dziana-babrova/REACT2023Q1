@@ -7,7 +7,7 @@ import { FormsPage } from 'pages/forms-page/Forms';
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<Base></Base>}>
           <Route index path="/" element={<HomePage />} />
@@ -16,7 +16,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import { describe, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
+import { Provider } from 'react-redux';
+import { store } from 'state/store/Store';
 import { EventCard } from 'components/event-card/EventCard';
 
 describe('Card', () => {
@@ -19,7 +20,11 @@ describe('Card', () => {
         'https://rolling-scopes-school.github.io/dziana-babrova-JSFE2022Q3/online-zoo/assets/GiantPanda.png',
       theme: ['character', 'season'],
     };
-    render(<EventCard {...card}></EventCard>);
+    render(
+      <Provider store={store}>
+        <EventCard {...card}></EventCard>{' '}
+      </Provider>
+    );
     expect(screen.getByRole('listitem')).toBeInTheDocument();
     expect(screen.getByAltText(card.name)).toBeInTheDocument();
     expect(screen.getByText(card.name)).toBeInTheDocument();

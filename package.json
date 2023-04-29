@@ -16,7 +16,9 @@
     "coverage": "vitest run --coverage",
     "cypress:open": "cypress open",
     "cy:run": "cypress run --browser chrome --headed",
-    "test:cypress": "start-server-and-test start http://localhost:3001 cy:run"
+    "test:cypress": "start-server-and-test start http://localhost:3001 cy:run",
+    "instrument": "nyc instrument --compact=false src instrumented",
+    "coverage:e2e": "nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -29,9 +31,11 @@
     "sass": "^1.59.2"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/cypress__code-coverage": "^3.10.0",
     "@types/express": "^4.17.17",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
@@ -53,11 +57,13 @@
     "jsdom": "^21.1.1",
     "lint-staged": "^12.4.1",
     "nodemon": "^2.0.22",
+    "nyc": "^15.1.0",
     "prettier": "^2.6.2",
     "start-server-and-test": "^2.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
+    "vite-plugin-istanbul": "^4.0.1",
     "vitest": "^0.29.3"
   }
 }

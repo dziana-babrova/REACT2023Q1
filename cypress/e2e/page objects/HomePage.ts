@@ -17,12 +17,28 @@ export class HomePage extends BasePage {
     return cy.get('ul.cards-list');
   }
 
+  get characterItems() {
+    return this.charactersList.children();
+  }
+
+  get cardNames() {
+    return cy.get('.card-name');
+  }
+
+  get noResultMessage() {
+    return cy.get('.no-results-message');
+  }
+
   get RickSanchesCard() {
-    return cy.get('=Rick Sanchez');
+    return this.cardNames.contains('Rick Sanchez');
   }
 
   setSearchTerm(term: string) {
     this.searchBar.type(term);
+  }
+
+  clearSearchTerm() {
+    this.searchBar.clear();
   }
 
   clickSubmitButton() {
@@ -33,3 +49,5 @@ export class HomePage extends BasePage {
     this.RickSanchesCard.click();
   }
 }
+
+export const homePage = new HomePage();

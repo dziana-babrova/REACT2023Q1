@@ -1,6 +1,10 @@
 import { HomePage } from './Homepage';
 
 class CharacterModal extends HomePage {
+  get popup() {
+    return cy.get('.popup-card');
+  }
+
   get characterImage() {
     return cy.get('.popup-card__image');
   }
@@ -44,3 +48,5 @@ class CharacterModal extends HomePage {
     this.overlay.click();
   }
 }
+
+export const characterModal = new CharacterModal();

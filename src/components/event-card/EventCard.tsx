@@ -11,19 +11,19 @@ const EventCard = ({ name, lang, place, date, type, image, theme }: Card) => {
       <div className="event__place">
         <span className="event__label">Where? </span>
         <span className="event__address">{place} </span>
-        <span className="event__type">({type}) </span>
+        <span className="event__type">({type})</span>
       </div>
       <div className="event__time">
         <span className="event__label">When? </span>
-        <span className="event__date">{date} </span>
+        <span className="event__date">{date}</span>
       </div>
       <div className="event__lang">
         <span className="event__label">What language? </span>
-        <span className="event__lang-item">{lang} </span>
+        <span className="event__lang-item">{lang}</span>
       </div>
       <div className="event__theme">
         <span className="event__label">What to discuss? </span>
-        <span className="event__theme-item">{theme.join(', ')} </span>
+        <span className="event__theme-item">{theme.join(', ')}</span>
       </div>
     </li>
   );

@@ -6,6 +6,8 @@ class AboutPage extends BasePage {
   }
 
   get message() {
-    return cy.get('=No data provided');
+    return cy.get('.about-message');
   }
 }
+
+export const aboutPage = new AboutPage();

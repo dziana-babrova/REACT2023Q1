@@ -10,15 +10,15 @@ export class BasePage extends Page {
   }
 
   get navLinkHome() {
-    return cy.get('a=Home');
+    return cy.get('a').contains('Home', { matchCase: false });
   }
 
   get navLinkAbout() {
-    return cy.get('a=About');
+    return cy.get('a').contains('About', { matchCase: false });
   }
 
   get navLinkForms() {
-    return cy.get('a=Forms');
+    return cy.get('a').contains('Forms', { matchCase: false });
   }
 
   clickNavLinkHome() {

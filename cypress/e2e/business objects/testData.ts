@@ -1,3 +1,5 @@
+import path from 'path';
+
 export type EventPositiveFlowType = {
   name: string;
   date: string;
@@ -10,10 +12,15 @@ export type EventPositiveFlowType = {
 
 export const eventPositiveFlow: EventPositiveFlowType = {
   name: 'test Name',
-  date: '05052022',
+  date: '2023-07-07',
   theme: ['character', 'season'],
   language: 'French',
   type: 'offline',
   place: 'test address',
-  poster: './../../src/assets/back.jpg',
+  poster: './cypress/e2e/business objects/back.jpg',
+};
+
+export const searchValues = {
+  positive: ['Rick', 'Morty', 'Summer'],
+  negative: ['fwwcfewf'],
 };

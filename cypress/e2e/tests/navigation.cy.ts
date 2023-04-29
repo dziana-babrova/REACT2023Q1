@@ -1,0 +1,44 @@
+import { aboutPage } from '../page objects/AboutPage';
+import { formPage } from '../page objects/FormPage';
+import { homePage } from '../page objects/Homepage';
+
+describe('The user can', () => {
+  it('navigate through the menu', () => {
+    homePage.open();
+    homePage.navLinkHome.should('have.class', 'header__link header__link_active');
+    homePage.pageName.should('contain.text', 'Home');
+    homePage.charactersList.should('exist');
+    homePage.searchBar.should('exist');
+    homePage.submitButton.should('exist');
+    homePage.reload();
+    homePage.navLinkHome.should('have.class', 'header__link header__link_active');
+    homePage.pageName.should('contain.text', 'Home');
+    homePage.clickNavLinkAbout();
+    aboutPage.navLinkAbout.should('have.class', 'header__link header__link_active');
+    aboutPage.pageName.should('contain.text', 'About');
+    aboutPage.message.should('contain.text', 'No data provided');
+    aboutPage.reload();
+    aboutPage.navLinkAbout.should('have.class', 'header__link header__link_active');
+    aboutPage.pageName.should('contain.text', 'About');
+    aboutPage.message.should('contain.text', 'No data provided');
+    aboutPage.clickNavLinkForms();
+    formPage.navLinkForms.should('have.class', 'header__link header__link_active');
+    formPage.pageName.should('contain.text', 'Forms');
+    formPage.eventForm.should('exist');
+    formPage.eventList.should('exist');
+    formPage.formTitle.should('exist');
+    formPage.eventsTitle.should('exist');
+    formPage.reload();
+    formPage.navLinkForms.should('have.class', 'header__link header__link_active');
+    formPage.pageName.should('contain.text', 'Forms');
+    formPage.eventForm.should('exist');
+    formPage.eventList.should('exist');
+    formPage.formTitle.should('exist');
+    formPage.eventsTitle.should('exist');
+    formPage.clickNavLinkHome();
+    homePage.navLinkHome.should('have.class', 'header__link header__link_active');
+    homePage.charactersList.should('exist');
+    homePage.searchBar.should('exist');
+    homePage.submitButton.should('exist');
+  });
+});

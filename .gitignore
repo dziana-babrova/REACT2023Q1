@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .nyc_output
 instrumented
+coverage
+cypress/downloads
+cypress/screenshots

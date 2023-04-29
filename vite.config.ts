@@ -11,6 +11,14 @@ export default defineConfig({
       requireEnv: false,
     }),
   ],
+  build: {
+    sourcemap: true,
+  },
+  server: {
+    watch: {
+      ignored: ['**/coverage/**'],
+    },
+  },
   resolve: {
     alias: {
       components: '/src/components',

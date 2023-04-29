@@ -10,9 +10,9 @@ export default defineConfig({
       return config;
     },
   },
-  // env: {
-  //   codeCoverage: {
-  //     exclude: 'cypress/**/*.*',
-  //   },
-  // },
+  env: {
+    codeCoverage: {
+      exclude: 'cypress/**/*.*',
+    },
+  },
 });

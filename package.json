@@ -14,12 +14,10 @@
     "lint": "eslint . --ext .ts . --ext .tsx",
     "test:unit": "vitest",
     "coverage:unit": "vitest run --coverage",
-    "cy:run": "cypress run --browser chrome --headed",
+    "cy:run": "cypress run --browser chrome",
     "test:cypress": "start-server-and-test dev:server http://localhost:3001 cy:run",
-    "instrument:cypress": "nyc instrument --compact=false src instrumented",
     "coverage:cypress": "nyc report --reporter=text-summary",
-    "test:instrumented": "npm run instrument:cypress && npm run test:cypress",
-    "test:e2e": "npm run test:instrumented && npm run coverage:cypress"
+    "test:e2e": "npm run test:cypress && npm run coverage:cypress"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",

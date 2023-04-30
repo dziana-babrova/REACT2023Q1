@@ -1,5 +1,3 @@
-import path from 'path';
-
 export type EventPositiveFlowType = {
   name: string;
   date: string;
@@ -22,5 +20,5 @@ export const eventPositiveFlow: EventPositiveFlowType = {
 
 export const searchValues = {
   positive: ['Rick', 'Morty', 'Summer'],
-  negative: ['fwwcfewf'],
+  negative: ['fewf'],
 };
